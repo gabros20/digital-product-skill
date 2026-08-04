@@ -1,5 +1,7 @@
 # digital-product — Digital Product
 
+**Visual guide:** [digital-product-skill.vercel.app](https://digital-product-skill.vercel.app)
+
 The composer for the **Digital Product Skills family**: 14 independently installable specialist
 skills covering the full product lifecycle, and this skill — the 15th — that ties them together.
 `digital-product` routes any product request to the right specialist, sequences multi-stage work
@@ -62,6 +64,8 @@ composer detects what's installed and names the command for anything missing.
 ```text
 skills/digital-product/   runtime skill (SKILL.md + 4 references)
 evals/                    behavioral eval suites (repository-only, not installed)
+site/                     the family hub site (digital-product-skill.vercel.app)
+remotion/                 hero-animation source for the site
 docs/                     the family's canonical research, architecture, and decisions
 research/                 multi-channel research corpora from the family's build phase
 ```

@@ -1,0 +1,63 @@
+# digital-product
+
+> The composer for the Digital Product Skills family — fourteen specialist agent skills across one
+> product lifecycle, and the fifteenth that ties them together. Installs as an agent skill.
+
+digital-product routes any product request to the specialist skill that owns it, sequences
+multi-stage work across eight lifecycle stages with honest subtraction (most products don't need
+all fourteen), keeps every family deliverable in one committed `digital-product/` folder with a
+thin `LEDGER.md`, and holds the family's dated cross-skill seam rulings — including the ones
+deliberately left contested.
+
+It owns the seams and the sequence — none of the domains. It produces routing decisions, stage
+plans, ledger entries, and handoff glue: never a PRD, a design, a line of production code, a test
+verdict, or a forecast. Every specialist works standalone, and the composer's first duty is knowing
+when it is not needed. It is also not an orchestration engine: multi-agent topology belongs to a
+separate `orchestrate` skill, and this pack never re-implements it.
+
+Claude Code is the reference host; it's plain Agent Skills format (agentskills.io), so it installs
+on Codex, Cursor, Antigravity, opencode, Grok Build, and Hermes too.
+
+## Install
+
+- npm/skills.sh: `npx skills add gabros20/digital-product-skill -g -y`
+- Clone + installer (per-host targets: claude | codex | agents | cursor | antigravity | opencode | grok | hermes | all): `git clone https://github.com/gabros20/digital-product-skill && cd digital-product-skill && ./install.sh claude`
+- Manual copy: `cp -R skills/digital-product ~/.claude/skills/digital-product`
+- Specialists install the same way, one at a time: `npx skills add gabros20/<pack>-skill -g -y`
+
+## Docs
+
+- [README.md](https://raw.githubusercontent.com/gabros20/digital-product-skill/main/README.md): overview, install, the family table, and repository map.
+- [skills/digital-product/SKILL.md](https://raw.githubusercontent.com/gabros20/digital-product-skill/main/skills/digital-product/SKILL.md): runtime router, routing rules, universal invariants, core workflow.
+- [SOURCES.md](https://raw.githubusercontent.com/gabros20/digital-product-skill/main/SOURCES.md): what this pack sources from the fourteen specialists, and what it claims for itself.
+- [AGENTS.md](https://raw.githubusercontent.com/gabros20/digital-product-skill/main/AGENTS.md): ownership boundary and non-negotiable invariants for agents editing this repo.
+
+## Reference inventory (`skills/digital-product/references/`)
+
+- `lifecycle-map.md` — the eight stages and their default dependency order, where work enters, the minimal path, how artifacts travel between stages, and the lateral seams the linear order hides.
+- `artifact-convention.md` — the `digital-product/` folder layout, the `LEDGER.md` format and discipline, repo-relative path portability, and the `.orchestrate/` boundary.
+- `coordination.md` — mode selection (in-context, native subagents, hand off to orchestrate), the one-page brief and dense report contracts, and the ledger discipline across all three.
+- `seam-rulings.md` — dated cross-skill rulings, standing ownership splits, the deliberately contested seams, vocabulary law, and the known graceful mis-routes left unfixed on purpose.
+
+## The eight stages and fourteen skills
+
+| Stage | Skill | Site |
+|---|---|---|
+| Define | `product` | https://product-skill.vercel.app |
+| Design | `design` | https://designskill.vercel.app |
+| Shape | `architecture` | https://architecture-skill.vercel.app |
+| Build | `frontend` | https://frontendengskill.vercel.app |
+| Build | `backend` | https://backendengskill.vercel.app |
+| Build | `data` | https://data-skill.vercel.app |
+| Build | `ai` | https://aiengskill.vercel.app |
+| Build | `automation` | https://automation-skill.vercel.app |
+| Assure | `quality` | https://quality-skill.vercel.app |
+| Run | `operate` | https://operate-skill.vercel.app |
+| Improve | `growth` | https://growthskill.vercel.app |
+| Improve | `success` | https://success-skill.vercel.app |
+| Distribute | `marketing` | https://marketing-skill.vercel.app |
+| Distribute | `sales` | https://salesskill.vercel.app |
+
+## Optional
+
+- [Visual guide](https://digital-product-skill.vercel.app): the lifecycle, the family map, and the coordination modes on one page.

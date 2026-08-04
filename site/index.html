@@ -1,0 +1,777 @@
+<!doctype html>
+<!-- digital-product · the family front door. Shared family chrome (file set, type register,
+     hero video, footer geometry) but a deliberately different STRUCTURE: sibling pages present one
+     pack's surface; this page is a map of fourteen. Identity is the family indigo (#6366f1, from
+     .codex-plugin/plugin.json brandColor) de-defaulted three ways — the neutral ramp is achromatic
+     graphite rather than the blue-slate that indigo templates pair with, indigo never appears as a
+     gradient or as decoration, and it carries exactly one meaning: routed. Gray = available but not
+     routed. Amber = deliberately skipped, or deliberately contested. The centerpiece and only bold
+     move is the family map, whose row widths are the family's real shape: Build bulges to five,
+     Assure and Run are one each. Numbering on the lifecycle rail is honest — the eight stages are a
+     real dependency order, which is the only case where 01/02/03 markers carry information. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#131316">
+<title>digital-product — fifteen skills, one product lifecycle</title>
+<meta name="description" content="The composer for the Digital Product Skills family: fourteen independently installable specialist agent skills covering the full product lifecycle, and the fifteenth that ties them together. Routes any product request to the skill that owns it, sequences multi-stage work with honest subtraction (most products don't need all fourteen), keeps every deliverable in one committed digital-product/ folder with a thin LEDGER.md, and holds the family's dated seam rulings — including the ones deliberately left contested. It owns the seams and the sequence, none of the domains.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://digital-product-skill.vercel.app/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="digital-product — fifteen skills, one product lifecycle">
+<meta property="og:description" content="Fourteen specialist agent skills across eight lifecycle stages, and the composer that routes between them. Names the one skill that owns your request, or the shortest path that gets there — and says which stages it is skipping, and why.">
+<meta property="og:url" content="https://digital-product-skill.vercel.app/">
+<meta property="og:image" content="https://digital-product-skill.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="digital-product">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="digital-product — fifteen skills, one product lifecycle">
+<meta name="twitter:description" content="The front door to fourteen specialist agent skills. Routes to the one that owns your request, sequences the rest, and names what it skipped.">
+<meta name="twitter:image" content="https://digital-product-skill.vercel.app/og.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "digital-product",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Claude Code / agent CLIs",
+  "description": "The composer for the Digital Product Skills family — fourteen independently installable specialist agent skills (product, design, architecture, frontend, backend, ai, data, automation, quality, operate, growth, success, marketing, sales) across eight lifecycle stages, and the fifteenth skill that ties them together. It routes a single-domain request to one named skill and stops, sequences multi-stage work into the minimal set of stages that is actually needed while naming every stage it skipped and why, keeps all family deliverables in one committed digital-product/ folder with a thin LEDGER.md, and holds the family's dated cross-skill seam rulings including the ones deliberately left contested. Coordination escalates only on need: in-context by default, native subagents for genuinely independent stages, and a plan-file handoff to a separate orchestrate skill when explicit multi-agent execution is requested. It owns the seams and the sequence, none of the domains, and produces no PRD, design, production code, or test verdict of its own.",
+  "url": "https://digital-product-skill.vercel.app/",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "license": "https://opensource.org/licenses/MIT",
+  "sameAs": ["https://github.com/gabros20/digital-product-skill"]
+}
+</script>
+
+<style>
+  /* ---- tokens ----------------------------------------------------------------
+     --brand is the fixed family identity indigo (plugin.json brandColor). It is used only where
+     identity is read as a mark, never as body text: the favicon, the og image, and the ambient
+     glow. --accent is the AA-passing pair derived from it and carries every functional use.
+     The neutral ramp is achromatic on purpose: indigo-on-blue-slate is the templated pairing,
+     and a pure-gray ramp lets the one accent carry all the routing meaning. ------------------ */
+  :root{
+    --brand:#6366f1;
+    --bg:#f5f5f6; --panel:#ffffff; --ink:#17171a; --muted:#5c5c66; --line:#dedee3;
+    --accent:#5250df; --accent-ink:#ffffff;
+    --amber:#8a5f0d; --amber-bg:#fbf4e6;
+    --good:#1e7f4f; --code-bg:#ececef; --glyph:#8a8a95;
+    --sunk:#eeeef1; --grid:rgba(23,23,26,.045);
+  }
+  @media (prefers-color-scheme: dark){ :root{
+    --bg:#131316; --panel:#1c1c21; --ink:#e8e8ee; --muted:#9494a0; --line:#2e2e36;
+    --accent:#9698f9; --accent-ink:#131316;
+    --amber:#d9a72e; --amber-bg:#241d0c;
+    --good:#4cc38a; --code-bg:#17171b; --glyph:#64646f;
+    --sunk:#101013; --grid:rgba(232,232,238,.045);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#131316; --panel:#1c1c21; --ink:#e8e8ee; --muted:#9494a0; --line:#2e2e36;
+    --accent:#9698f9; --accent-ink:#131316;
+    --amber:#d9a72e; --amber-bg:#241d0c;
+    --good:#4cc38a; --code-bg:#17171b; --glyph:#64646f;
+    --sunk:#101013; --grid:rgba(232,232,238,.045);
+  }
+  :root[data-theme="light"]{
+    --bg:#f5f5f6; --panel:#ffffff; --ink:#17171a; --muted:#5c5c66; --line:#dedee3;
+    --accent:#5250df; --accent-ink:#ffffff;
+    --amber:#8a5f0d; --amber-bg:#fbf4e6;
+    --good:#1e7f4f; --code-bg:#ececef; --glyph:#8a8a95;
+    --sunk:#eeeef1; --grid:rgba(23,23,26,.045);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%; text-size-adjust:100%}
+  html,body{overflow-x:hidden; max-width:100%}
+  body{background:var(--bg); color:var(--ink); font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; margin:0; -webkit-font-smoothing:antialiased; position:relative}
+  /* one ambient plane behind the page — the identity indigo, unsaturated, never a gradient on text */
+  body::before{content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(1100px 620px at 78% -6%, color-mix(in srgb, var(--brand) 13%, transparent), transparent 62%);}
+  .wrap{max-width:1060px; margin:0 auto; padding:0 24px 96px; position:relative; z-index:1}
+  code,.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+  a{color:var(--accent)}
+  p{max-width:68ch}
+  .cond{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif}
+
+  .eyebrow{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.14em; font-weight:600; font-size:13px; color:var(--muted)}
+  h1{font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:clamp(36px,7.2vw,74px); margin:.08em 0 .18em; letter-spacing:-.025em; text-wrap:balance; font-weight:500}
+  h1 .sl{color:var(--accent)}
+  h2{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.09em; font-size:21px; margin:0 0 4px; display:flex; align-items:center; gap:12px}
+  h2::after{content:""; flex:1; height:1px; background:var(--line)}
+  h2 .lu{color:var(--accent); width:20px; height:20px}
+  section{margin-top:70px}
+  .lede{font-size:19px; color:var(--muted); max-width:66ch; margin:0}
+  .lede b{color:var(--ink)}
+  .lu{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; flex:none; vertical-align:-3px}
+
+  nav.toplinks,.secnav{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px}
+  nav.toplinks a,.secnav a{font-family:ui-monospace,Menlo,monospace; font-size:12.5px; text-decoration:none; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:7px 14px; background:var(--panel)}
+  nav.toplinks a:hover,.secnav a:hover{color:var(--accent); border-color:var(--accent)}
+  nav.toplinks a:focus-visible,.secnav a:focus-visible{color:var(--accent); border-color:var(--accent); outline:2px solid var(--accent); outline-offset:2px}
+  .secnav a::before{content:"#"; color:var(--glyph); margin-right:5px}
+  .secnav a:hover::before,.secnav a:focus-visible::before{color:var(--accent)}
+
+  header{padding-top:64px}
+  .term{background:var(--code-bg); border:1px solid var(--line); border-radius:8px; padding:14px 18px; font-family:ui-monospace,Menlo,monospace; font-size:13.5px; line-height:1.7; overflow-x:auto; white-space:pre}
+  .term .c{color:var(--muted)}
+  .term .p{color:var(--accent); font-weight:600}
+  .hosts{display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin:16px 0 0}
+  .hosts .hl{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.14em; font-weight:600; font-size:11px; color:var(--muted); margin-right:2px}
+  .hosts span:not(.hl){font-family:ui-monospace,Menlo,monospace; font-size:11.5px; color:var(--muted); background:var(--code-bg); border-radius:5px; padding:3px 8px; white-space:nowrap}
+  .hosts span.ref{color:var(--accent); font-weight:600}
+
+  .vidwrap{display:none; margin-top:22px}
+  .vidwrap video{display:block; width:100%; aspect-ratio:16/9; border:1px solid var(--line); border-radius:12px; background:var(--bg); box-shadow:0 26px 60px -42px rgba(0,0,0,.55)}
+  body.has-vid .vidwrap{display:block}
+  body.has-vid .herofallback{display:none}
+
+  /* ---- hero fallback: the two behaviours, side by side ---------------------------------- */
+  .trace{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px 24px; margin-top:22px}
+  .tlane + .tlane{margin-top:18px; padding-top:18px; border-top:1px dashed var(--line)}
+  .thead{display:flex; align-items:baseline; gap:10px; margin-bottom:11px; flex-wrap:wrap}
+  .tnum{font-family:ui-monospace,Menlo,monospace; font-size:11.5px; color:var(--glyph)}
+  .tname{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.1em; font-weight:600; font-size:13px; color:var(--ink)}
+  .tsub{font-size:12.5px; color:var(--muted)}
+  .tsay{font-family:ui-monospace,Menlo,monospace; font-size:13px; color:var(--ink); background:var(--code-bg); border:1px solid var(--line); border-radius:7px; padding:8px 13px; display:inline-block; margin-bottom:12px}
+  .tsay .q{color:var(--glyph)}
+  .tout{display:flex; flex-wrap:wrap; align-items:center; gap:8px}
+  .node{font-family:ui-monospace,Menlo,monospace; font-size:12.5px; padding:5px 11px; border-radius:7px; white-space:nowrap; color:var(--muted); background:var(--bg); border:1px solid var(--line)}
+  .node.on{color:var(--accent-ink); background:var(--accent); border-color:var(--accent); font-weight:600}
+  .node.skip{color:var(--amber); border-color:var(--amber); border-style:dashed; background:transparent; text-decoration:line-through; text-decoration-color:color-mix(in srgb, var(--amber) 55%, transparent)}
+  .arrowg{color:var(--glyph); font-family:ui-monospace,Menlo,monospace; font-size:13px}
+  .treason{margin-top:11px; font-size:12.5px; color:var(--muted); line-height:1.55; max-width:none}
+  .treason b{color:var(--amber); font-weight:600}
+  .tledger{margin-top:13px; font-family:ui-monospace,Menlo,monospace; font-size:11.5px; color:var(--muted); background:var(--code-bg); border-left:2px solid var(--accent); border-radius:0 7px 7px 0; padding:10px 14px; line-height:1.85; overflow-x:auto; white-space:pre}
+  .tledger .k{color:var(--accent)}
+  .pcap{font-size:13.5px; color:var(--muted); margin:14px 0 0; max-width:70ch}
+  .pcap b{color:var(--ink)}
+
+  /* ---- the lifecycle rail --------------------------------------------------------------- */
+  .rail{display:grid; grid-template-columns:repeat(8,1fr); gap:0; margin-top:22px; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--panel)}
+  .rcell{padding:16px 14px 18px; border-right:1px solid var(--line); display:flex; flex-direction:column; gap:7px; min-width:0}
+  .rcell:last-child{border-right:none}
+  .rcell .n{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; font-size:30px; font-weight:600; line-height:1; color:var(--line); letter-spacing:-.02em}
+  .rcell .s{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.09em; font-weight:600; font-size:14px; color:var(--ink)}
+  .rcell .d{font-size:11.5px; color:var(--muted); line-height:1.45}
+  .rcell .k{display:flex; flex-wrap:wrap; gap:4px; margin-top:auto; padding-top:8px}
+  .rcell .k code{font-family:ui-monospace,Menlo,monospace; font-size:10.5px; color:var(--accent); background:var(--code-bg); border-radius:4px; padding:2px 6px}
+  @media (max-width:860px){ .rail{grid-template-columns:repeat(4,1fr)} .rcell:nth-child(4n){border-right:none} .rcell:nth-child(-n+4){border-bottom:1px solid var(--line)} }
+  @media (max-width:520px){ .rail{grid-template-columns:repeat(2,1fr)} .rcell{border-right:1px solid var(--line); border-bottom:1px solid var(--line)} .rcell:nth-child(2n){border-right:none} .rcell:nth-last-child(-n+2){border-bottom:none} }
+
+  .note{background:var(--amber-bg); border:1px solid var(--amber); border-radius:8px; padding:12px 16px; font-size:14px; margin-top:18px; max-width:none; line-height:1.55}
+  .note b{color:var(--amber)}
+  .rule{margin-top:16px; font-size:13.5px; color:var(--muted); display:flex; gap:10px; line-height:1.55; max-width:none}
+  .rule .lu{color:var(--accent); flex:none; margin-top:1px; width:17px; height:17px}
+  .rule b{color:var(--ink)}
+
+  /* ---- THE MAP — the page's one bold move ------------------------------------------------ */
+  .mapband{margin:26px 0 0; padding:34px 0 38px; background:var(--sunk); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:100% 46px, 46px 100%;
+    margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); padding-left:max(24px, calc(50vw - 530px)); padding-right:max(24px, calc(50vw - 530px));}
+  .maprow{display:grid; grid-template-columns:112px 1fr; gap:20px; align-items:start}
+  .maprow + .maprow{margin-top:14px; padding-top:14px; border-top:1px dashed var(--line)}
+  .mlabel{text-align:right; padding-top:5px}
+  .mlabel .st{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.08em; font-weight:600; font-size:clamp(16px,2vw,21px); color:var(--ink); line-height:1.05; display:block}
+  .mlabel .ct{font-family:ui-monospace,Menlo,monospace; font-size:10.5px; color:var(--glyph); display:block; margin-top:4px; white-space:nowrap}
+  /* flex-basis 0 + grow 1: every card in a row shares the row equally and never wraps, so a row's
+     card WIDTH encodes its skill count — Build's five are visibly narrower than Assure's one.
+     That asymmetry is the section's whole point; a wrapping basis would break it. */
+  .mcards{display:flex; flex-wrap:nowrap; gap:10px}
+  .mcard{flex:1 1 0; min-width:0; display:block; text-decoration:none; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:13px 15px 14px; transition:border-color .16s ease, transform .16s ease, background-color .16s ease}
+  .mcard:hover,.mcard:focus-visible{border-color:var(--accent); transform:translateY(-2px); background:color-mix(in srgb, var(--accent) 5%, var(--panel))}
+  .mcard:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+  .mcard .nm{font-family:ui-monospace,Menlo,monospace; font-size:14px; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:8px; min-width:0; overflow:hidden; white-space:nowrap}
+  .mcard .nm .lu{width:16px; height:16px; color:var(--accent)}
+  .mcard .nm .go{margin-left:auto; width:14px; height:14px; color:var(--glyph)}
+  .mcard:hover .nm .go,.mcard:focus-visible .nm .go{color:var(--accent)}
+  .mcard .ow{font-size:12px; color:var(--muted); line-height:1.45; margin-top:6px}
+  .mcard .dm{font-family:ui-monospace,Menlo,monospace; font-size:10.5px; color:var(--glyph); margin-top:8px; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .maplegend{display:flex; flex-wrap:wrap; gap:16px; margin-bottom:20px; font-size:12.5px; color:var(--muted); align-items:center}
+  .maplegend .lg{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.12em; font-weight:600; font-size:11px; color:var(--glyph)}
+  .maplegend .sw{display:inline-flex; align-items:center; gap:7px}
+  .maplegend i{width:12px; height:12px; border-radius:3px; display:inline-block; flex:none}
+  .maplegend i.a{background:var(--accent)} .maplegend i.g{background:var(--line)} .maplegend i.m{border:1px dashed var(--amber); background:transparent}
+  /* below ~1000px the five-across Build row can no longer hold its card titles, so every row
+     stacks rather than squeezing the widest one into an ellipsis */
+  @media (max-width:999px){ .mcards{flex-wrap:wrap} .mcard{flex:1 1 100%} }
+  @media (max-width:640px){ .maprow{grid-template-columns:1fr; gap:8px} .mlabel{text-align:left} }
+
+  /* ---- subtraction ------------------------------------------------------------------------ */
+  .paths{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px}
+  @media (max-width:760px){ .paths{grid-template-columns:1fr} }
+  .path{border:1px solid var(--line); border-radius:11px; padding:16px 18px 17px; background:var(--panel); min-width:0}
+  .path h3{font-family:ui-monospace,Menlo,monospace; font-size:13.5px; margin:0 0 10px; color:var(--ink); display:flex; align-items:center; gap:8px}
+  .path h3 .lu{color:var(--accent); width:16px; height:16px}
+  .prun{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:12px}
+  .prun .st{font-family:ui-monospace,Menlo,monospace; font-size:11.5px; padding:4px 9px; border-radius:6px; background:var(--accent); color:var(--accent-ink); font-weight:600; white-space:nowrap}
+  .prun .sep{color:var(--glyph); font-family:ui-monospace,Menlo,monospace; font-size:11px}
+  .pskip{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:7px}
+  .pskip li{font-size:12.5px; line-height:1.45; color:var(--muted); display:flex; gap:9px; align-items:baseline}
+  .pskip li .x{font-family:ui-monospace,Menlo,monospace; font-size:11.5px; color:var(--amber); border:1px dashed var(--amber); border-radius:5px; padding:1px 7px; flex:none; text-decoration:line-through; text-decoration-color:color-mix(in srgb, var(--amber) 55%, transparent)}
+  .pskip li b{color:var(--ink); font-weight:600}
+
+  /* ---- what the composer does -------------------------------------------------------------- */
+  .trio{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:14px; margin-top:20px}
+  .tri{border:1px solid var(--line); border-radius:11px; padding:17px 19px; background:var(--panel); min-width:0}
+  .tri.contest{border-left:3px solid var(--amber)}
+  .tri.routed{border-left:3px solid var(--accent)}
+  .tri h3{font-family:ui-monospace,Menlo,monospace; font-size:14px; margin:0 0 5px; color:var(--ink); display:flex; align-items:center; gap:9px}
+  .tri h3 .lu{color:var(--accent); width:17px; height:17px}
+  .tri.contest h3 .lu{color:var(--amber)}
+  .tri p{font-size:13px; color:var(--muted); margin:0 0 11px; line-height:1.5; max-width:none}
+  .tri p b{color:var(--ink)}
+  .tri p:last-child{margin-bottom:0}
+  .ledgerbox{font-family:ui-monospace,Menlo,monospace; font-size:11.5px; line-height:1.8; color:var(--muted); background:var(--code-bg); border-radius:7px; padding:11px 13px; overflow-x:auto; white-space:pre; margin:0}
+  .ledgerbox .k{color:var(--accent)} .ledgerbox .d{color:var(--glyph)}
+  .seamlist{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px}
+  .seamlist li{font-size:12.5px; line-height:1.45; color:var(--muted)}
+  .seamlist li b{font-family:ui-monospace,Menlo,monospace; font-size:11.5px; color:var(--ink); font-weight:600}
+  .seamlist li .dt{font-family:ui-monospace,Menlo,monospace; font-size:10.5px; color:var(--glyph)}
+  .seamlist li.open b{color:var(--amber)}
+
+  .rules{list-style:none; padding:0; margin:20px 0 0; display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px}
+  .rules li{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:6px; padding:12px 16px; font-size:13.5px; line-height:1.5}
+  .rules li b{display:flex; align-items:center; gap:7px; font-family:ui-monospace,Menlo,monospace; font-size:13px; margin-bottom:3px; color:var(--ink)}
+  .rules li b .lu{width:15px; height:15px; color:var(--accent)}
+
+  /* ---- coordination modes ------------------------------------------------------------------ */
+  .modes{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:20px; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--panel)}
+  .mode{padding:18px 20px 20px; border-right:1px solid var(--line); display:flex; flex-direction:column; gap:8px; min-width:0}
+  .mode:last-child{border-right:none}
+  .mode.def{background:color-mix(in srgb, var(--accent) 5%, var(--panel))}
+  .mode .mn{font-family:ui-monospace,Menlo,monospace; font-size:11px; color:var(--glyph)}
+  .mode .mt{font-family:ui-monospace,Menlo,monospace; font-size:14.5px; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .mode .mt .lu{color:var(--accent); width:16px; height:16px}
+  .mode .badge{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.08em; font-weight:600; font-size:10.5px; color:var(--accent-ink); background:var(--accent); border-radius:999px; padding:1px 9px}
+  .mode .mw{font-size:12.5px; color:var(--muted); line-height:1.5}
+  .mode .mc{margin-top:auto; padding-top:10px; font-family:ui-monospace,Menlo,monospace; font-size:11px; color:var(--glyph); border-top:1px solid var(--line)}
+  @media (max-width:760px){ .modes{grid-template-columns:1fr} .mode{border-right:none; border-bottom:1px solid var(--line)} .mode:last-child{border-bottom:none} }
+
+  details.disc{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:0; margin-top:14px}
+  details.disc summary{cursor:pointer; padding:13px 18px; font-family:ui-monospace,Menlo,monospace; font-size:13.5px; color:var(--accent); list-style:none; display:flex; align-items:center; gap:8px}
+  details.disc summary::-webkit-details-marker{display:none}
+  details.disc summary::before{content:"▸"; color:var(--glyph); transition:transform .12s ease}
+  details.disc[open] summary::before{transform:rotate(90deg)}
+  details.disc summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  details.disc>div{padding:2px 18px 16px}
+  details.disc p{font-size:13.5px; color:var(--muted)}
+  .files{background:var(--code-bg); border:1px solid var(--line); border-radius:8px; padding:16px 20px; font-family:ui-monospace,Menlo,monospace; font-size:13px; line-height:1.9; overflow-x:auto; white-space:pre; margin-top:8px}
+  .files .d{color:var(--muted)}
+  .files .hl{color:var(--accent); font-weight:600}
+
+  footer{margin-top:76px; padding-top:20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px}
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important} }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="lu-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
+  <symbol id="lu-network" viewBox="0 0 24 24"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></symbol>
+  <symbol id="lu-list-ordered" viewBox="0 0 24 24"><path d="M10 5h11"/><path d="M10 12h11"/><path d="M10 19h11"/><path d="M4 4h1v4"/><path d="M4 8h2"/><path d="M6 16a1.5 1.5 0 1 0-2 1.3c.6.4 2 .7 2 1.7a1.5 1.5 0 0 1-2 1"/></symbol>
+  <symbol id="lu-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></symbol>
+  <symbol id="lu-scroll-text" viewBox="0 0 24 24"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></symbol>
+  <symbol id="lu-scale" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+  <symbol id="lu-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></symbol>
+  <symbol id="lu-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="lu-git-fork" viewBox="0 0 24 24"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></symbol>
+  <symbol id="lu-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></symbol>
+  <symbol id="lu-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+  <symbol id="lu-compass" viewBox="0 0 24 24"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/></symbol>
+  <symbol id="lu-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2"/></symbol>
+  <symbol id="lu-boxes" viewBox="0 0 24 24"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></symbol>
+  <symbol id="lu-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></symbol>
+  <symbol id="lu-server" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></symbol>
+  <symbol id="lu-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></symbol>
+  <symbol id="lu-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></symbol>
+  <symbol id="lu-workflow" viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></symbol>
+  <symbol id="lu-radio-tower" viewBox="0 0 24 24"><path d="M4.9 16.1C1 12.2 1 5.8 4.9 1.9"/><path d="M7.8 4.7a6.14 6.14 0 0 0-.8 7.5"/><circle cx="12" cy="9" r="2"/><path d="M16.2 4.8c2 2 2.26 5.11.8 7.47"/><path d="M19.1 1.9a9.96 9.96 0 0 1 0 14.1"/><path d="M9.5 18h5"/><path d="m8 22 4-11 4 11"/></symbol>
+  <symbol id="lu-trending-up" viewBox="0 0 24 24"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></symbol>
+  <symbol id="lu-life-buoy" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m4.93 19.07 4.24-4.24"/></symbol>
+  <symbol id="lu-megaphone" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+  <symbol id="lu-handshake" viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></symbol>
+  <symbol id="lu-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="lu-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="lu-boxes-net" viewBox="0 0 24 24"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></symbol>
+  <symbol id="lu-files" viewBox="0 0 24 24"><path d="M15 2h-4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/><path d="M16.706 2.706A2.4 2.4 0 0 0 15 2v5a1 1 0 0 0 1 1h5a2.4 2.4 0 0 0-.706-1.706z"/><path d="M5 7a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 1.732-1"/></symbol>
+  <symbol id="lu-file-check" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></symbol>
+  <symbol id="lu-terminal" viewBox="0 0 24 24"><path d="m4 17 6-6-6-6"/><path d="M12 19h8"/></symbol>
+  <symbol id="lu-split" viewBox="0 0 24 24"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></symbol>
+  <symbol id="lu-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+</svg>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">an agent skill · the front door to fourteen specialist skills</div>
+  <nav class="toplinks" aria-label="external links">
+    <a href="https://github.com/gabros20/digital-product-skill" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://github.com/gabros20/digital-product-skill#install" target="_blank" rel="noopener">Install</a>
+    <a href="/llms.txt">llms.txt</a>
+  </nav>
+  <h1><span class="sl">/</span>digital-product</h1>
+  <p class="lede"><b>digital-product</b> is the skill you ask when you don't yet know which skill to
+  ask. Tell it what you want in ordinary words — "add checkout to my app", "take my idea to launch" —
+  and it either names the one specialist that owns it and gets out of the way, or lays out the
+  shortest run of lifecycle stages that actually gets there. Most products don't need all fourteen
+  skills, so it says which ones it is skipping and why. Everything a run produces lands in one
+  <code>digital-product/</code> folder with a thin <code>LEDGER.md</code>, so the next session picks
+  up from disk instead of memory. It owns the seams and the sequence — <b>none of the domains</b>.
+  Its first duty is telling you when you don't need it.</p>
+  <div class="term" style="margin-top:22px"><span class="c"># ordinary words — no flags, no fixed pipeline</span>
+<span class="p">/digital-product</span> I want to build a scheduling app — which skills do I need, and in what order?</div>
+  <p class="hosts"><span class="hl">runs on</span><span class="ref">Claude Code</span><span>Codex</span><span>Cursor</span><span>Antigravity</span><span>opencode</span><span>Grok Build</span><span>Hermes</span></p>
+  <nav class="secnav" aria-label="page sections">
+    <a href="#lifecycle">the eight stages</a><a href="#family">the fourteen skills</a>
+    <a href="#subtraction">what it skips</a><a href="#composer">what it does</a>
+    <a href="#modes">coordination</a><a href="#start">start here</a>
+  </nav>
+
+  <div class="vidwrap" id="vidwrap"></div>
+  <!-- render from remotion/, see remotion/README -->
+  <div class="herofallback trace" role="img" aria-label="The composer has two behaviours. First, route and stop: a request that belongs to exactly one skill — add Stripe checkout to my app — is answered by naming that skill, backend, in one line, with no stage plan and no ceremony, because composing a plan around a one-skill job is pure overhead. Second, sequence with subtraction: a request that spans the lifecycle — take my idea to launch — gets an entry stage, a minimal ordered path along the eight-stage spine, and every stage it does not run named with a reason. For a solo-founder web app the path runs product, design, architecture thin, frontend and backend, quality, operate, with marketing's pre-launch work running alongside the build; data, ai, automation, growth, success, and sales are each skipped with a stated reason rather than silently omitted, because a silent skip reads as coverage that never happened. Each transition appends one line to a ledger file at digital-product slash LEDGER.md, which records the entry stage, the path, the skipped stages with their reasons, and the single next action — so a resumed session trusts the ledger and the disk over any recollection of the conversation.">
+    <div class="tlane">
+      <div class="thead"><span class="tnum">behaviour 01</span><span class="tname">route, and stop</span><span class="tsub">one skill is enough → name it, no plan</span></div>
+      <div class="tsay"><span class="q">"</span>add Stripe checkout to my app<span class="q">"</span></div>
+      <div class="tout">
+        <span class="node on">backend</span>
+        <span class="arrowg">← the one skill that owns it</span>
+      </div>
+      <p class="treason">No stage plan, no ledger ceremony, no other pack loaded. Composition is
+      overhead; every skill in this family works standalone.</p>
+    </div>
+    <div class="tlane">
+      <div class="thead"><span class="tnum">behaviour 02</span><span class="tname">sequence, with subtraction</span><span class="tsub">a path along the spine — and what it leaves out</span></div>
+      <div class="tsay"><span class="q">"</span>take my idea to launch<span class="q">"</span></div>
+      <div class="tout">
+        <span class="node on">product</span><span class="arrowg">→</span>
+        <span class="node on">design</span><span class="arrowg">→</span>
+        <span class="node on">architecture</span><span class="arrowg">→</span>
+        <span class="node on">frontend</span><span class="node on">backend</span><span class="arrowg">→</span>
+        <span class="node on">quality</span><span class="arrowg">→</span>
+        <span class="node on">operate</span>
+      </div>
+      <div class="tout" style="margin-top:9px">
+        <span class="node skip">data</span><span class="node skip">ai</span><span class="node skip">automation</span>
+        <span class="node skip">growth</span><span class="node skip">success</span><span class="node skip">sales</span>
+      </div>
+      <p class="treason"><b>Named, not silently dropped.</b> "no analytical data plane at this scale",
+      "nothing model-powered in the product", "no users to measure yet", "the existence gate would
+      decline an assisted sales motion at this price point". A silent skip reads as coverage that
+      never happened. <code>marketing</code>'s pre-launch work runs alongside the build rather than
+      waiting for it.</p>
+      <div class="tledger"><span class="k">Stage:</span> Build · <span class="k">Updated:</span> 2026-08-04
+<span class="k">Entry:</span> Define — an idea, nothing built.
+<span class="k">Path:</span> Define → Design → Shape → Build → Assure → Run
+<span class="k">Skipped:</span> Improve — no users to measure yet.
+<span class="k">Next:</span> draw the API contract before frontend and backend split (architecture)</div>
+    </div>
+  </div>
+  <p class="pcap"><b>Two behaviours, one skill.</b> The animation traces both — a single request
+  landing on one node, then a bigger one drawing a path and ticking off what it skipped. The
+  sections below are the map it routes across.</p>
+</header>
+
+<section id="lifecycle">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-list-ordered"/></svg>The eight stages</h2>
+  <p>These are numbered because the order is real: each stage consumes what earlier stages produce.
+  That is a <i>default dependency</i> order, not a mandate to run all eight — and work enters
+  wherever your situation already is. A running product asking "why is churn up" enters at Improve
+  and skips nothing that matters.</p>
+  <div class="rail">
+    <div class="rcell"><span class="n">01</span><span class="s">Define</span><span class="d">The problem, the user, the business model, the spec.</span><span class="k"><code>product</code></span></div>
+    <div class="rcell"><span class="n">02</span><span class="s">Design</span><span class="d">The experience, ending in a frontend handoff.</span><span class="k"><code>design</code></span></div>
+    <div class="rcell"><span class="n">03</span><span class="s">Shape</span><span class="d">Boundaries, contracts, budgets — between Define and Build.</span><span class="k"><code>architecture</code></span></div>
+    <div class="rcell"><span class="n">04</span><span class="s">Build</span><span class="d">Five peers, chosen by what the product actually is. They can run in parallel once Shape has drawn the contracts.</span><span class="k"><code>frontend</code><code>backend</code><code>data</code><code>ai</code><code>automation</code></span></div>
+    <div class="rcell"><span class="n">05</span><span class="s">Assure</span><span class="d">Independent verification and the ship decision. Writes no tests.</span><span class="k"><code>quality</code></span></div>
+    <div class="rcell"><span class="n">06</span><span class="s">Run</span><span class="d">Deploy, observe, respond, pay for, eventually decommission.</span><span class="k"><code>operate</code></span></div>
+    <div class="rcell"><span class="n">07</span><span class="s">Improve</span><span class="d">Experiments and diagnosis; keeping the customers you have.</span><span class="k"><code>growth</code><code>success</code></span></div>
+    <div class="rcell"><span class="n">08</span><span class="s">Distribute</span><span class="d">Create and capture demand; convert it.</span><span class="k"><code>marketing</code><code>sales</code></span></div>
+  </div>
+  <div class="note"><b>The last two are not "after" Run in calendar time.</b> A live product cycles
+  through Improve and Distribute continuously. The dependency claim binds Improve only — there must
+  be something running before there is something to improve. Distribute can, and often should,
+  precede launch entirely: <code>marketing</code> ships an overlay written for exactly the
+  pre-launch, no-list, no-following reader, and plans launch as an event rather than an
+  afterthought.</div>
+  <p class="rule"><svg class="lu" aria-hidden="true"><use href="#lu-route"/></svg><span><b>Where you enter is set by what exists, not by the numbers.</b>
+  Idea and nothing built → Define. A spec but no design or system → Design and Shape, concurrently.
+  An inherited codebase with no docs → Shape first, which reads the current state as the state to
+  evolve and says plainly what is undocumented. A diagnosis question does not restart the
+  lifecycle.</span></p>
+</section>
+
+<section id="family">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-network"/></svg>The fourteen skills</h2>
+  <p>Each one is an independently installable agent skill with its own router, its own references,
+  and its own guide — built and released on its own before this composer existed. The shape of this
+  map is the family's real shape: Build carries five peers, Assure and Run carry one each. Follow any
+  card to that skill's site.</p>
+  <div class="mapband">
+    <div class="maplegend">
+      <span class="lg">colour, throughout this page</span>
+      <span class="sw"><i class="a"></i> routed</span>
+      <span class="sw"><i class="g"></i> available, not routed</span>
+      <span class="sw"><i class="m"></i> skipped, with a reason</span>
+    </div>
+
+    <div class="maprow">
+      <div class="mlabel"><span class="st">Define</span><span class="ct">01 · 1 skill</span></div>
+      <div class="mcards">
+        <a class="mcard" href="https://product-skill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-compass"/></svg>product<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">What to build, for whom, why — discovery, strategy, PRDs, pricing and business model, dunning, metrics, risk registers.</span>
+          <span class="dm">product-skill.vercel.app</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="maprow">
+      <div class="mlabel"><span class="st">Design</span><span class="ct">02 · 1 skill</span></div>
+      <div class="mcards">
+        <a class="mcard" href="https://designskill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-palette"/></svg>design<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">The experience — UX research, journeys, information architecture, interaction, visual direction, accessibility, design systems, the frontend handoff.</span>
+          <span class="dm">designskill.vercel.app</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="maprow">
+      <div class="mlabel"><span class="st">Shape</span><span class="ct">03 · 1 skill</span></div>
+      <div class="mcards">
+        <a class="mcard" href="https://architecture-skill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-boxes"/></svg>architecture<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">The system's shape — boundaries, contracts, non-functional budgets, threat model, architecture decision records.</span>
+          <span class="dm">architecture-skill.vercel.app</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="maprow">
+      <div class="mlabel"><span class="st">Build</span><span class="ct">04 · 5 peers</span></div>
+      <div class="mcards">
+        <a class="mcard" href="https://frontendengskill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-monitor"/></svg>frontend<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">Production client code — web, iOS, Android; consumes the design handoff.</span>
+          <span class="dm">frontendengskill.vercel.app</span>
+        </a>
+        <a class="mcard" href="https://backendengskill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-server"/></svg>backend<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">The server behind the contract — APIs, domain logic, transactional persistence, auth, jobs.</span>
+          <span class="dm">backendengskill.vercel.app</span>
+        </a>
+        <a class="mcard" href="https://data-skill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-database"/></svg>data<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">The analytical, governed data plane — tracking, contracts, pipelines, the metrics layer, experiment-measurement validity.</span>
+          <span class="dm">data-skill.vercel.app</span>
+        </a>
+        <a class="mcard" href="https://aiengskill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-sparkles"/></svg>ai<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">Model-powered behaviour — routing, context, agents, retrieval, evaluations, guardrails.</span>
+          <span class="dm">aiengskill.vercel.app</span>
+        </a>
+        <a class="mcard" href="https://automation-skill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-workflow"/></svg>automation<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">Cross-system and human-in-the-loop processes — platforms, triggers, approvals, reconciliation.</span>
+          <span class="dm">automation-skill.vercel.app</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="maprow">
+      <div class="mlabel"><span class="st">Assure</span><span class="ct">05 · 1 skill</span></div>
+      <div class="mcards">
+        <a class="mcard" href="https://quality-skill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-shield-check"/></svg>quality<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">Independent verification and the ship decision. It writes no tests — those belong to the Build skill that owns the code — it judges the evidence.</span>
+          <span class="dm">quality-skill.vercel.app</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="maprow">
+      <div class="mlabel"><span class="st">Run</span><span class="ct">06 · 1 skill</span></div>
+      <div class="mcards">
+        <a class="mcard" href="https://operate-skill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-radio-tower"/></svg>operate<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">Running what shipped — release and rollout, CI/CD, observability, incidents, cost, decommissioning.</span>
+          <span class="dm">operate-skill.vercel.app</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="maprow">
+      <div class="mlabel"><span class="st">Improve</span><span class="ct">07 · 2 skills</span></div>
+      <div class="mcards">
+        <a class="mcard" href="https://growthskill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-trending-up"/></svg>growth<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">Honest experimentation — the feasibility gate, experiment design, funnel and cohort diagnosis, interpretation.</span>
+          <span class="dm">growthskill.vercel.app</span>
+        </a>
+        <a class="mcard" href="https://success-skill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-life-buoy"/></svg>success<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">Keeping customers — onboarding programs, support, health honesty, retention execution, renewals and NRR reporting.</span>
+          <span class="dm">success-skill.vercel.app</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="maprow">
+      <div class="mlabel"><span class="st">Distribute</span><span class="ct">08 · 2 skills</span></div>
+      <div class="mcards">
+        <a class="mcard" href="https://marketing-skill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-megaphone"/></svg>marketing<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">Creating, capturing and attributing demand — positioning, launch, SEO, content, lifecycle email, attribution.</span>
+          <span class="dm">marketing-skill.vercel.app</span>
+        </a>
+        <a class="mcard" href="https://salesskill.vercel.app" target="_blank" rel="noopener">
+          <span class="nm"><svg class="lu" aria-hidden="true"><use href="#lu-handshake"/></svg>sales<svg class="lu go" aria-hidden="true"><use href="#lu-arrow-up-right"/></svg></span>
+          <span class="ow">Winning business and knowing whether you are — outbound, discovery calls, pipeline, forecasting honesty, win/loss.</span>
+          <span class="dm">salesskill.vercel.app</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <p class="rule" style="margin-top:22px"><svg class="lu" aria-hidden="true"><use href="#lu-download"/></svg><span><b>Install only what you need.</b>
+  Each one installs on its own with <code>npx skills add gabros20/&lt;pack&gt;-skill -g -y</code>, and
+  works with no composer present. The composer detects what is installed and names the exact command
+  for anything missing, then continues with what exists.</span></p>
+</section>
+
+<section id="subtraction">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-scissors"/></svg>What it leaves out</h2>
+  <p>The composer's job is subtraction. A fourteen-skill plan for a landing page is the composer
+  failing, not being thorough. Four honest minimal paths, with every stage it does not run named and
+  reasoned — because a stage nobody mentions reads as coverage that never happened.</p>
+  <div class="paths">
+    <div class="path">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-monitor"/></svg>A marketing site</h3>
+      <div class="prun">
+        <span class="st">product</span><span class="sep">→</span><span class="st">design</span><span class="sep">→</span>
+        <span class="st">frontend</span><span class="sep">→</span><span class="st">quality</span><span class="sep">→</span>
+        <span class="st">operate</span><span class="sep">→</span><span class="st">marketing</span>
+      </div>
+      <ul class="pskip">
+        <li><span class="x">backend · data · ai</span><span>no server, no analytical plane, nothing model-powered — <b>unless the site grows those needs</b>.</span></li>
+        <li><span class="x">sales · success</span><span>there is nothing to sell against and no account to keep.</span></li>
+      </ul>
+    </div>
+    <div class="path">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-rocket"/></svg>A solo-founder SaaS MVP</h3>
+      <div class="prun">
+        <span class="st">product</span><span class="sep">→</span><span class="st">design</span><span class="sep">→</span>
+        <span class="st">architecture</span><span class="sep">→</span><span class="st">frontend + backend</span><span class="sep">→</span>
+        <span class="st">quality</span><span class="sep">→</span><span class="st">operate</span>
+      </div>
+      <ul class="pskip">
+        <li><span class="x">growth</span><span>no users to measure yet — growth's own <b>feasibility gate would correctly decline</b> tests that can't be answered.</span></li>
+        <li><span class="x">sales</span><span>its existence gate typically returns self-serve-only at MVP price points; it gates on deal value and purchasing friction, <b>not on scale</b>.</span></li>
+      </ul>
+      <p class="treason"><code>architecture</code> runs thin here — one decision record may be
+      enough — and <code>marketing</code>'s pre-launch work runs alongside Build rather than waiting
+      for it.</p>
+    </div>
+    <div class="path">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-sparkles"/></svg>Adding an AI feature</h3>
+      <div class="prun">
+        <span class="st">product</span><span class="sep">→</span><span class="st">architecture</span><span class="sep">→</span>
+        <span class="st">ai + backend</span><span class="sep">→</span><span class="st">quality</span><span class="sep">→</span>
+        <span class="st">operate</span>
+      </div>
+      <ul class="pskip">
+        <li><span class="x">design</span><span>only if the feature adds no new surface; a new one puts Design back in.</span></li>
+        <li><span class="x">the rest</span><span>Define is <b>scoped to the feature</b>, and Shape covers the contract and threat model for the new surface only.</span></li>
+      </ul>
+    </div>
+    <div class="path">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-workflow"/></svg>Internal automation</h3>
+      <div class="prun">
+        <span class="st">automation</span>
+      </div>
+      <ul class="pskip">
+        <li><span class="x">everything else</span><span>one skill, alone. Where a business rule already exists in writing, <code>automation</code> <b>cites the pack that owns it</b> rather than recapturing it — its own process-capture skip rule.</span></li>
+      </ul>
+      <p class="treason">This is the shape most requests actually have. Route and stop.</p>
+    </div>
+  </div>
+  <div class="note"><b>The failure this guards against.</b> Work entering at Build on an unvalidated
+  idea is the most expensive way to discover the problem was wrong. The composer names the risk,
+  offers Define scoped to a day, and — if you decline — records that choice in the ledger rather than
+  quietly proceeding.</div>
+</section>
+
+<section id="composer">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-route"/></svg>What the composer itself does</h2>
+  <p>It produces routing decisions, stage plans, ledger entries, and handoff glue. Never a PRD, a
+  design, a line of production code, a test verdict, or a forecast. The moment work becomes domain
+  work, the named specialist does it — in that pack's own voice, loaded at that moment and not
+  before.</p>
+  <div class="trio">
+    <div class="tri routed">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-route"/></svg>Route, and stop</h3>
+      <p>If a request maps to exactly one skill, the composer names it, says why in one line, and
+      proceeds with that skill. <b>No stage plan is built around a one-skill job.</b></p>
+      <p>Specialist packs are loaded one at a time, on entering their stage — never preloaded as a
+      family. If a needed pack isn't installed, the composer says so, names the exact install
+      command, and continues with what exists.</p>
+    </div>
+    <div class="tri">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-scroll-text"/></svg>The ledger is the memory</h3>
+      <p>All family output lands in a visible, committed <code>digital-product/</code> folder at the
+      repository root — one subfolder per pack, created on first use, source code never in it.
+      State lives in <code>LEDGER.md</code>: <b>one line per entry, pointers not narrative</b>.</p>
+      <pre class="ledgerbox"><span class="k">Stage:</span> Assure
+<span class="k">Entry:</span> Define — an idea, nothing built
+<span class="k">Skipped:</span> Improve <span class="d">— no users yet</span>
+<span class="k">Decisions:</span> <span class="d">one line, owner pack</span>
+<span class="k">Artifacts:</span> <span class="d">path — draft | agreed |</span>
+          <span class="d">superseded by &lt;path&gt;</span>
+<span class="k">Next:</span> <span class="d">one concrete action</span></pre>
+      <p style="margin-top:11px">A ledger you have to scroll to answer "where are we?" has failed.
+      Supersede, never delete — what was believed and when is part of the record.</p>
+    </div>
+    <div class="tri contest">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-scale"/></svg>Contested stays contested</h3>
+      <p>Boundary questions are answered from a dated registry, not re-litigated. Some seams the
+      family <b>deliberately left open</b> — flattening one to give a tidier answer breaks a shipped
+      pack that checks the disagreement as an invariant.</p>
+      <ul class="seamlist">
+        <li><b>dunning → product</b> <span class="dt">2026-08-03</span> — ruled, cited to the pack that claims the mechanism in its own voice.</li>
+        <li><b>retention: growth reads the trend, success owns the figure</b> <span class="dt">2026-08-03</span> — ruled, split down the middle.</li>
+        <li class="open"><b>renewal workflow ↔ expansion-sale close</b> <span class="dt">open</span> — <code>success</code> and <code>sales</code> hold incompatible positions; both are relayed intact, and neither the composer nor either pack adjudicates.</li>
+      </ul>
+      <p style="margin-top:11px">The registry also carries vocabulary law — "discovery call" is
+      sales's, bare "discovery" is product's; deploy, release and launch are three events
+      <code>operate</code> refuses to merge — and one <b>graceful mis-route left unfixed on
+      purpose</b>, because tightening it would misroute the adjacent request instead.</p>
+    </div>
+  </div>
+  <ul class="rules">
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-route"/></svg>Route to one skill when one suffices</b>Composition is overhead. The composer's first duty is knowing when it is not needed.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-scroll-text"/></svg>The ledger is the memory</b>Appended before moving on. On resume, trust the ledger and the disk over recollection.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-scale"/></svg>Seams come from the registry</b>A ruled seam is cited with its date; a contested seam is presented as contested.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-files"/></svg>Artifacts on disk are the interface</b>A stage hands the next stage file paths, never a summary that replaces the artifact.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-shield"/></svg>Never absorb a specialist's knowledge</b>If an answer needs a pack's content, load that pack — don't paraphrase it from a routing table.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-scissors"/></svg>State what was skipped</b>A plan names the stages deliberately not run, and why. A silent skip reads as coverage that never happened.</li>
+  </ul>
+</section>
+
+<section id="modes">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-git-fork"/></svg>Coordination, at the lowest cost that fits</h2>
+  <p>Escalate only on demonstrated need, never on ceremony. The chosen mode and its one-line
+  justification go in the ledger.</p>
+  <div class="modes">
+    <div class="mode def">
+      <span class="mn">mode 1</span>
+      <span class="mt"><svg class="lu" aria-hidden="true"><use href="#lu-user"/></svg>in-context<span class="badge">default</span></span>
+      <span class="mw">Read the pack, do the stage's work in its voice, land the artifacts, append the ledger, move on. Nothing else. For sequential lifecycle work this beats agents outright: full shared context, no handoff loss, no dispatch overhead.</span>
+      <span class="mc">cost — zero</span>
+    </div>
+    <div class="mode">
+      <span class="mn">mode 2</span>
+      <span class="mt"><svg class="lu" aria-hidden="true"><use href="#lu-users"/></svg>native subagents</span>
+      <span class="mw">Only when two or more stages are <b>genuinely independent</b> — no shared files, no ordering — and the host can spawn them. One brief out, one report back, ledger appended as each lands. If two stages share a file, they were never independent.</span>
+      <span class="mc">cost — one brief + one report per stage</span>
+    </div>
+    <div class="mode">
+      <span class="mn">mode 3</span>
+      <span class="mt"><svg class="lu" aria-hidden="true"><use href="#lu-split"/></svg>hand off to orchestrate</span>
+      <span class="mw"><b>Opt-in by you, never inferred from task size.</b> The composer writes a plan file and gets out of the way. It is not an orchestration engine and never re-implements one — no strategy presets, no review gates, no model routing, no monitoring loops.</span>
+      <span class="mc">cost — budgeted in that separate skill</span>
+    </div>
+  </div>
+  <p class="rule"><svg class="lu" aria-hidden="true"><use href="#lu-file-check"/></svg><span><b>After any mode, the ledger is reconciled from the disk — not from the report.</b>
+  Updating state from a summary records artifacts that may not exist. Two dispatch rules travel with
+  mode 2: pin a model on every dispatch, and never spawn a duplicate of a running stage-agent —
+  check its disk output first, then nudge once.</span></p>
+</section>
+
+<section id="start">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-download"/></svg>Start here</h2>
+  <p>Install the composer, then the specialists you actually need. It's a plain
+  <code>SKILL.md</code> router — no flags, no config, no fixed pipeline — so it activates on ordinary
+  phrasing rather than a fixed command.</p>
+  <div class="term"><span class="c"># the composer</span>
+npx skills add gabros20/digital-product-skill -g -y
+
+<span class="c"># the specialists you need — same shape, one at a time</span>
+npx skills add gabros20/product-skill -g -y
+npx skills add gabros20/backend-skill -g -y
+
+<span class="c"># or from a clone — installs into any of 8 client targets</span>
+git clone https://github.com/gabros20/digital-product-skill
+cd digital-product-skill &amp;&amp; ./install.sh claude
+<span class="c"># targets: claude | codex | agents | cursor | antigravity | opencode | grok | hermes | all</span>
+
+<span class="c"># use — ordinary words, any host</span>
+<span class="p">/digital-product</span> which skill owns "our onboarding emails aren't converting"?
+<span class="p">/digital-product</span> plan my idea end to end, and tell me what you're skipping
+<span class="p">/digital-product</span> who owns the renewal — success or sales?</div>
+  <p style="margin-top:14px">The same install runs on any <a href="https://agentskills.io">Agent&nbsp;Skills</a>
+  host. Codex triggers with <code>$digital-product</code>; a manual copy into any client's skills
+  directory also works.</p>
+  <details class="disc">
+    <summary>what's in the repo</summary>
+    <div>
+      <div class="files"><span class="hl">skills/digital-product/</span>  <span class="d">the skill: SKILL.md (router) + 4 references/</span>
+                          <span class="d">lifecycle-map · artifact-convention · coordination · seam-rulings</span>
+<span class="hl">evals/</span>                    <span class="d">4 suites, 31 cases — activation (14), traversal (8), output (6),</span>
+                          <span class="d">compression-ablation (3); repository-only, never installed</span>
+<span class="hl">docs/</span>                     <span class="d">the family's research corpus and architecture decisions</span>
+<span class="hl">research/</span>                 <span class="d">multi-channel research corpora from the family's build phase</span>
+<span class="hl">site/</span>                     <span class="d">this page</span>
+README.md · SOURCES.md · AGENTS.md · LICENSE</div>
+      <p>The eval prompts deliberately voice the confusions this skill exists to handle — asking it
+      to settle a contested seam, or to parallelize everything — and the assertions define the
+      disciplined response. More detail:
+      <a href="https://github.com/gabros20/digital-product-skill/blob/main/skills/digital-product/SKILL.md">SKILL.md</a> ·
+      <a href="https://github.com/gabros20/digital-product-skill/blob/main/SOURCES.md">SOURCES.md</a>,
+      which records the unusual thing about this pack: its research corpus is the family itself, read
+      in released form.</p>
+    </div>
+  </details>
+</section>
+
+<footer>
+  <span><span class="mono">/digital-product</span> — the seams and the sequence, none of the domains</span>
+  <span><a href="https://github.com/gabros20/digital-product-skill">github.com/gabros20/digital-product-skill</a> · <a href="/llms.txt">llms.txt</a> · MIT</span>
+</footer>
+</div>
+<script>
+(function () {
+  // Progressive enhancement over the static route-trace above: swaps in the hero Remotion video
+  // (light/dark). On any load error it removes the slot, leaving the static trace in place.
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (innerWidth < 720) return; // the static trace reads better on phones
+  var wrap = document.getElementById("vidwrap");
+  if (!wrap || !document.createElement("video").canPlayType) return;
+  var mq = matchMedia("(prefers-color-scheme: dark)");
+  var v = document.createElement("video");
+  v.muted = true;
+  v.loop = true;
+  v.autoplay = true;
+  v.playsInline = true;
+  v.setAttribute("playsinline", "");
+  v.setAttribute("aria-label", "The digital-product composer in motion. A plain request is typed — add checkout to my app — and a single node lights on a map of fourteen skills: backend, named in one line with no stage plan, because composing a plan around a one-skill job is pure overhead and every skill in the family works standalone. A second, larger request follows — take my idea to launch — and this time a path is drawn along the eight-stage lifecycle spine of Define, Design, Shape, Build, Assure, Run, Improve and Distribute, lighting product, design, architecture, frontend, backend, quality and operate in sequence while visibly skipping data, ai, automation, growth, success and sales, each skipped node carrying its own stated reason rather than being silently dropped: no analytical data plane at this scale, nothing model-powered in the product, no users to measure yet, and an existence gate that would decline an assisted sales motion at this price point. As each stage completes, one thin line is appended to a ledger file, digital-product slash LEDGER dot md, recording the entry stage, the path, the skipped stages with their reasons, the artifacts produced and the single next action — so a resumed session trusts the ledger and the disk rather than any recollection of the conversation. The closing frame states the whole idea plainly: fifteen skills, one lifecycle, and only the stages you actually need.");
+  v.addEventListener("loadeddata", function () { document.body.classList.add("has-vid"); });
+  v.addEventListener("error", function () { wrap.remove(); });
+  function apply() {
+    var theme = document.documentElement.getAttribute("data-theme") || (mq.matches ? "dark" : "light");
+    v.poster = "assets/hero-" + theme + "-poster.png";
+    v.src = "assets/hero-" + theme + ".mp4";
+    v.play && v.play().catch(function () {});
+  }
+  apply();
+  mq.addEventListener && mq.addEventListener("change", apply);
+  wrap.appendChild(v);
+})();
+</script>
+</body>
+</html>

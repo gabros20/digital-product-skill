@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://digital-product-skill.vercel.app/sitemap.xml
