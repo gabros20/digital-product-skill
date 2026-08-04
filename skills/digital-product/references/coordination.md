@@ -73,6 +73,11 @@ has, borrowed deliberately small from `orchestrate`'s practice:
 Independence is the gate: if two stages share files or one consumes the other's decisions, they
 were not independent — run them sequentially in mode 1 rather than inventing synchronization.
 
+Two dispatch rules, borrowed with the contracts: **pin a model on every dispatch** (the brief's
+Model line is not optional), and **never spawn a duplicate of a running stage-agent** — an agent
+that looks stalled or finishes without reporting gets its disk output checked first, then one
+nudge; a second agent on the same brief doubles the cost and races the first one's writes.
+
 ## Mode 3: hand the plan to orchestrate
 
 When the user wants explicit multi-agent execution and `orchestrate` is installed, the composer's
@@ -95,6 +100,8 @@ entire job is to produce a good plan and get out of the way:
 ```markdown
 # Brief — <stage>: <one-line objective>
 Pack: <skill to load and obey>
+Model: <explicitly pinned model/effort tier for this dispatch — an omitted model inherits an
+unintended (often expensive) default; pin the cheapest tier the stage's difficulty honestly needs>
 Inputs: <repo-relative paths + the specific upstream decisions that bind you>
 Deliverables: <repo-relative paths to produce under digital-product/<pack>/ (and/or code paths)>
 Constraints: <budgets, contracts, decisions you may not override>
