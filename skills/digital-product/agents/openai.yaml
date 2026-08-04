@@ -1,0 +1,6 @@
+interface:
+  display_name: "Digital Product"
+  short_description: "Compose the digital-product skill family end to end"
+  default_prompt: "Use $digital-product to plan my product idea across the family — which skills, in what order, with one ledger."
+policy:
+  allow_implicit_invocation: true

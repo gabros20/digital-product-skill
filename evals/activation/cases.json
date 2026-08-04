@@ -1,0 +1,72 @@
+[
+  {
+    "id": "compose-idea-to-launch",
+    "prompt": "I have an idea for a SaaS product and want to go from zero to launched. Where do I start and in what order?",
+    "should_trigger": true
+  },
+  {
+    "id": "compose-routing-question",
+    "prompt": "Which skill should handle optimizing our app-store listing — marketing, product, or design?",
+    "should_trigger": true
+  },
+  {
+    "id": "compose-artifact-setup",
+    "prompt": "Set up the shared artifact folder and ledger for this project so all the product work lands in one place.",
+    "should_trigger": true
+  },
+  {
+    "id": "compose-seam-dispute",
+    "prompt": "Who owns dunning emails — marketing, success, or product? Settle it with the family's actual ruling.",
+    "should_trigger": true
+  },
+  {
+    "id": "compose-multistage-feature",
+    "prompt": "Plan adding an AI assistant to our existing app end to end — spec, architecture, build, verification, rollout.",
+    "should_trigger": true
+  },
+  {
+    "id": "compose-coordinate-build",
+    "prompt": "Coordinate the frontend and backend work for this feature against the agreed API contract and keep one ledger of what happened.",
+    "should_trigger": true
+  },
+  {
+    "id": "compose-resume-ledger",
+    "prompt": "This repo has a digital-product/LEDGER.md from last month. Pick up the lifecycle where it left off.",
+    "should_trigger": true
+  },
+  {
+    "id": "compose-minimal-path",
+    "prompt": "We only need a marketing site for now. Which stages of the product lifecycle actually apply and which can we skip?",
+    "should_trigger": true
+  },
+  {
+    "id": "negative-single-domain-prd",
+    "prompt": "Write the PRD for our new onboarding feature.",
+    "should_trigger": false
+  },
+  {
+    "id": "negative-single-domain-design",
+    "prompt": "Design the hero section for our landing page.",
+    "should_trigger": false
+  },
+  {
+    "id": "negative-single-domain-backend",
+    "prompt": "Add rate limiting to our public API.",
+    "should_trigger": false
+  },
+  {
+    "id": "negative-single-domain-growth",
+    "prompt": "Can our A/B test idea even be answered at our traffic level?",
+    "should_trigger": false
+  },
+  {
+    "id": "negative-orchestrate-topology",
+    "prompt": "Run this refactor plan with a multi-agent swarm, parallel worktrees, and dual review gates.",
+    "should_trigger": false
+  },
+  {
+    "id": "negative-single-domain-sales",
+    "prompt": "Build a win/loss review template for our lost deals.",
+    "should_trigger": false
+  }
+]

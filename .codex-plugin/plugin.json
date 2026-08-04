@@ -1,0 +1,33 @@
+{
+  "name": "digital-product-skill",
+  "version": "0.1.0",
+  "description": "Compose the 14-skill digital-product family — routing, lifecycle sequencing, shared artifacts, seam rulings",
+  "author": {
+    "name": "gabros20",
+    "url": "https://github.com/gabros20"
+  },
+  "homepage": "https://github.com/gabros20/digital-product-skill",
+  "repository": "https://github.com/gabros20/digital-product-skill",
+  "license": "MIT",
+  "keywords": [
+    "agent-skill",
+    "digital-product",
+    "composer",
+    "lifecycle",
+    "routing",
+    "orchestration"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Digital Product",
+    "shortDescription": "Compose the digital-product skill family end to end",
+    "longDescription": "The composer for a family of 14 independently installable specialist skills (product, design, architecture, frontend, backend, ai, data, automation, quality, operate, growth, success, marketing, sales). It routes any product request to the right specialist, sequences multi-stage work across the lifecycle with honest subtraction (most products don't need all 14), keeps every deliverable in one committed digital-product/ folder with a thin LEDGER.md, and holds the family's dated seam rulings — including the ones deliberately left contested. Coordination is escalation-on-need: in-context by default, native subagents for independent stages, and a clean plan-file handoff to the orchestrate skill when explicit multi-agent execution is wanted.",
+    "developerName": "gabros20",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Use $digital-product to plan my product idea across the family — which skills, in what order, with one ledger."
+    ],
+    "brandColor": "#6366f1"
+  }
+}

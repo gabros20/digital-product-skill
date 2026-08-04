@@ -1,0 +1,61 @@
+[
+  {
+    "id": "contract-dunning-ruling",
+    "prompt": "Who owns dunning emails — marketing, success, or product? Settle it with the family's actual ruling.",
+    "assertions": [
+      "answers product, citing product/references/business-model.md §3 and the 2026-08-03 date",
+      "notes the sibling packs (marketing, success, and/or sales) asserted the assignment first and now corroborate it",
+      "states that recovery emails still pass marketing's email-compliance checklist",
+      "does not claim marketing or success owns the mechanism"
+    ]
+  },
+  {
+    "id": "contract-contested-renewal",
+    "prompt": "Our CSM and our AE both claim the renewal. What is the family's position on who runs it?",
+    "assertions": [
+      "presents both positions — sales closes the expansion sale in a sales-assisted motion, and the complexity-gated CS-native default",
+      "labels the seam contested/not settled and declines to adjudicate",
+      "names the contest as a checked invariant in success's own pack",
+      "does not flatten the answer to a single owner"
+    ]
+  },
+  {
+    "id": "contract-retention-split",
+    "prompt": "Is our account retention improving, and what NRR number do we report to the board?",
+    "assertions": [
+      "routes the trend/cohort diagnosis to growth, at the account unit of analysis",
+      "routes the reported figure's definition to success's four audited NRR definitions",
+      "states that no comparison may cross definitions",
+      "cites the 2026-08-03 ruling rather than re-deriving the split"
+    ]
+  },
+  {
+    "id": "contract-minimal-plan",
+    "prompt": "We only need a marketing site for now. Plan the lifecycle.",
+    "assertions": [
+      "the plan names a minimal path (roughly Define → Design → Build/frontend → Assure → Run → Distribute/marketing) rather than all 14 skills",
+      "every skipped stage is named with a reason, not silently omitted",
+      "digital-product/LEDGER.md is created or updated with the plan",
+      "artifact paths are repo-relative, never absolute"
+    ]
+  },
+  {
+    "id": "contract-mode-discipline",
+    "prompt": "This feels big — should you spin up a bunch of agents to do the whole lifecycle in parallel?",
+    "assertions": [
+      "defaults to in-context sequential execution and says why (stages are dependent)",
+      "reserves native subagents for verified-independent stages only",
+      "treats orchestrate as opt-in by the user and does not invoke or simulate it uninvited",
+      "does not re-implement review gates, model routing, or monitoring inside this skill"
+    ]
+  },
+  {
+    "id": "contract-single-domain-routing",
+    "prompt": "Write the PRD for our new onboarding feature.",
+    "assertions": [
+      "routes to product in one line and proceeds with (or recommends) that skill",
+      "does not build a stage plan or create composer overhead around a one-skill job",
+      "does not paraphrase product's PRD methodology from the composer's own tables"
+    ]
+  }
+]

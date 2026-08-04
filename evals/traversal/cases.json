@@ -1,0 +1,74 @@
+[
+  {
+    "id": "map-for-new-product",
+    "prompt": "I have an idea for a SaaS product and want to go from zero to launched. Where do I start and in what order?",
+    "expected_references": [
+      "references/lifecycle-map.md",
+      "references/artifact-convention.md"
+    ],
+    "forbidden_references": []
+  },
+  {
+    "id": "registry-for-seam-dispute",
+    "prompt": "Who owns dunning emails — marketing, success, or product? Settle it.",
+    "expected_references": [
+      "references/seam-rulings.md"
+    ],
+    "forbidden_references": [
+      "references/coordination.md"
+    ]
+  },
+  {
+    "id": "convention-for-folder-setup",
+    "prompt": "Set up the shared artifact folder and ledger for this project.",
+    "expected_references": [
+      "references/artifact-convention.md"
+    ],
+    "forbidden_references": [
+      "references/seam-rulings.md"
+    ]
+  },
+  {
+    "id": "coordination-for-parallel-build",
+    "prompt": "Frontend and backend can proceed independently against the agreed contract — run them concurrently and collect the results.",
+    "expected_references": [
+      "references/coordination.md"
+    ],
+    "forbidden_references": []
+  },
+  {
+    "id": "coordination-for-orchestrate-handoff",
+    "prompt": "I want this lifecycle plan executed by orchestrate with its own review gates — prepare the handoff.",
+    "expected_references": [
+      "references/coordination.md",
+      "references/artifact-convention.md"
+    ],
+    "forbidden_references": []
+  },
+  {
+    "id": "map-for-resume",
+    "prompt": "This repo has digital-product/LEDGER.md at 'between Assure and Run'. What happens next?",
+    "expected_references": [
+      "references/lifecycle-map.md"
+    ],
+    "forbidden_references": []
+  },
+  {
+    "id": "map-not-registry-for-order",
+    "prompt": "Does architecture come before or after design, and can the build skills run in parallel?",
+    "expected_references": [
+      "references/lifecycle-map.md"
+    ],
+    "forbidden_references": [
+      "references/seam-rulings.md"
+    ]
+  },
+  {
+    "id": "registry-for-contested-seam",
+    "prompt": "Our CSM and our AE both claim the renewal. What is the family's position on who runs it?",
+    "expected_references": [
+      "references/seam-rulings.md"
+    ],
+    "forbidden_references": []
+  }
+]

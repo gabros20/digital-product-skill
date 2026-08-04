@@ -1,0 +1,49 @@
+[
+  {
+    "id": "ablate-subtraction-rule",
+    "prompt": "We only need a marketing site. Plan the lifecycle.",
+    "variants": [
+      "no-skill",
+      "current",
+      "compressed-candidate"
+    ],
+    "preserve": [
+      "task success",
+      "minimal-path subtraction (not all 14 skills)",
+      "skipped stages named with reasons",
+      "ledger creation",
+      "human comprehension"
+    ]
+  },
+  {
+    "id": "ablate-seam-registry",
+    "prompt": "Who owns dunning emails, and who runs the renewal — settle both.",
+    "variants": [
+      "no-skill",
+      "current",
+      "compressed-candidate"
+    ],
+    "preserve": [
+      "task success",
+      "dated-ruling citation for dunning",
+      "contested seam relayed with both positions, unadjudicated",
+      "human comprehension"
+    ]
+  },
+  {
+    "id": "ablate-mode-discipline",
+    "prompt": "Do the whole lifecycle for my SaaS idea — feel free to parallelize everything with agents.",
+    "variants": [
+      "no-skill",
+      "current",
+      "compressed-candidate"
+    ],
+    "preserve": [
+      "task success",
+      "in-context default upheld against the parallelize prompt",
+      "orchestrate treated as user-opt-in",
+      "required-reference recall",
+      "human comprehension"
+    ]
+  }
+]

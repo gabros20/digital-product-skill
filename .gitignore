@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+.vercel
+.env*
+__pycache__/
+*.pyc
+.orchestrate/
+
+# Local working notes never to publish
+anthropic-customer-escalation.md
+frontend-sources-corpus.json
