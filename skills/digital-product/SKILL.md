@@ -51,7 +51,11 @@ Two things this skill is explicitly not:
    independent stages; `orchestrate` only when explicitly requested and installed.
 6. Load a specialist pack's SKILL.md only when entering its stage. Never preload the family.
 7. If a needed pack is not installed, say so and name the exact command:
-   `npx skills add gabros20/<pack>-skill -g -y` — then continue with what exists.
+   `npx skills add gabros20/<pack>-skill -g -y` — then continue with what exists. Only when a
+   stage plan needs several missing packs, name the family installer instead
+   (`scripts/install-family --set <all|core|build|improve|distribute>` from the composer's
+   repository) — never as the default suggestion, since installing a pack that no stage in the
+   plan reaches is pure context cost.
 
 ### Jobs
 

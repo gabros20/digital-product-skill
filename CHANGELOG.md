@@ -8,7 +8,33 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
-- Queue unreleased changes here.
+- `scripts/install-family`: one-command installation of the composer plus any subset of the 14
+  specialists. Each pack installs from its own repository at its own HEAD — nothing is vendored,
+  so every pack stays on its own release line. Lifecycle-shaped `--set` values (`all`, `core`,
+  `build`, `improve`, `distribute`, per-stage names, or an explicit pack list) keep the installer
+  honest about subtraction; `--target` covers the same 8 clients as `install.sh`, and `--ref`,
+  `--dry-run`, and `--uninstall` round it out. Two methods: `skills` (default — registers with the
+  ecosystem CLI so `update`/`remove` keep working) and `clone` (sparse checkout + each pack's own
+  `install.sh`; faster and reaches all 8 targets, but the CLI records those installs as
+  `Source: local` and refuses to update them — re-run the installer for those packs instead).
+- `skills-lock.json`: project-scoped alternative — `npx skills experimental_install` restores all
+  15 skills into a single repository's `.agents/skills/` instead of the user profile.
+
+### Changed
+- `SKILL.md` step 7 now names the family installer, but only for stage plans needing several
+  missing packs — the single-pack command stays the default, since installing a pack no stage
+  reaches is pure context cost.
+- `scripts/check-sync` syntax-checks `scripts/install-family` when present (guarded, so the
+  universal gate stays shared with the template).
+- README, `site/index.html`, `site/llms.txt`, and `docs/README.md` document the family install and
+  the three update paths; `docs/README.md` ties "nothing is vendored" to ADR-0003, since vendoring
+  the specialists here would make one repository's release the source of another's content.
+
+### Removed
+- `research/` — the `product` and `architecture` corpora moved to `product-skill/research/` and
+  `architecture-skill/research/`, completing the convention started when the `ai` corpus moved to
+  `ai-skill`. A pack's research belongs to that pack's repository; the composer keeps only the
+  family-level docs under `docs/`. `AGENTS.md` records the rule.
 
 ## [0.1.0] — 2026-08-04
 

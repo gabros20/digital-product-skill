@@ -14,6 +14,8 @@ composer's first duty is knowing when it is not needed.
 
 ## Install
 
+Just the composer — it routes, and names the install command for any pack you don't have yet:
+
 ```bash
 npx skills add gabros20/digital-product-skill -g -y
 
@@ -21,8 +23,70 @@ npx skills add gabros20/digital-product-skill -g -y
 ./install.sh claude
 ```
 
-Install the specialists you need the same way (`npx skills add gabros20/<pack>-skill -g -y`); the
-composer detects what's installed and names the command for anything missing.
+### The whole family at once
+
+`scripts/install-family` installs the composer plus any subset of the 14 specialists, each from
+its own repository at its own HEAD — nothing is vendored here, so every pack stays on its own
+release line.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/gabros20/digital-product-skill/main/scripts/install-family | bash -s -- --set all
+
+# or from a clone:
+./scripts/install-family --set all
+```
+
+Sets follow the lifecycle, because most products don't need all 14 — installing everything adds
+roughly 2.4k tokens of always-on skill descriptions to every session:
+
+| `--set` | Installs (always with the composer) |
+|---|---|
+| `all` | all 14 specialists |
+| `core` | product, design, architecture, quality |
+| `define` · `design` · `shape` | product · design · architecture |
+| `build` | frontend, backend, data, ai, automation |
+| `assure` · `run` | quality · operate |
+| `improve` | growth, success |
+| `distribute` | marketing, sales |
+
+A comma-separated list works too and installs exactly what it names:
+`--set product,design`.
+
+Other flags: `--target <client>` (the same 8 clients `install.sh` supports), `--ref <branch|tag>`,
+`--method skills|clone`, `--dry-run`, and `--uninstall`. The default `skills` method registers
+each pack with the ecosystem CLI so `skills update` and `skills remove` keep working; `--method
+clone` is faster and reaches all 8 targets, but the CLI records those installs as `Source: local`
+and refuses to update them — see below.
+
+### Updating
+
+Packs installed the default way update by name, so you can take just the ones that moved:
+
+```bash
+npx skills update quality operate -g -y   # only these two
+npx skills update -g -y                   # every global skill
+```
+
+Packs installed with `--method clone` are **not** updatable that way — `skills update` reports
+`No installed skills found matching: <pack>`. Re-run the installer for those packs instead; each
+pack's `install.sh` replaces in place, restoring the previous copy if anything fails:
+
+```bash
+./scripts/install-family --set quality,operate --method clone
+```
+
+For a project-scoped install, re-running `npx skills experimental_install` restores every entry
+in `skills-lock.json` at its current HEAD.
+
+### Project-scoped
+
+To pin the family into one repository instead of your user profile, drop in the lockfile and
+restore it — this installs all 15 into the project's `.agents/skills/`:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/gabros20/digital-product-skill/main/skills-lock.json -o skills-lock.json
+npx skills experimental_install
+```
 
 ## The family
 
@@ -63,12 +127,16 @@ composer detects what's installed and names the command for anything missing.
 
 ```text
 skills/digital-product/   runtime skill (SKILL.md + 4 references)
+scripts/install-family    the composer + any subset, each pack from its own repository
+skills-lock.json          project-scoped install of all 15 via experimental_install
 evals/                    behavioral eval suites (repository-only, not installed)
 site/                     the family hub site (digital-product-skill.vercel.app)
 remotion/                 hero-animation source for the site
-docs/                     the family's canonical research, architecture, and decisions
-research/                 multi-channel research corpora from the family's build phase
+docs/                     the family's canonical architecture, decisions, and research
 ```
+
+Each pack's own multi-channel research corpus lives in that pack's repository
+(`<pack>-skill/research/`), not here — the composer holds the family-level docs only.
 
 ## Documentation & releases
 

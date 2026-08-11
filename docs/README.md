@@ -160,11 +160,20 @@ digital-product-skill/
 │   ├── resume/
 │   └── compatibility/
 ├── scripts/
+│   └── install-family
+├── skills-lock.json
 ├── README.md
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 └── LICENSE
 ```
+
+`scripts/install-family` and `skills-lock.json` are composition-repository resources: they install
+the composer plus any subset of the domain skills, each from its own repository at its own HEAD.
+Neither vendors a domain skill into this repository — that would collapse the polyrepo boundary
+[ADR-0003](decisions/0003-independent-skill-repositories.md) establishes, and would make one
+repository's release the source of another's content. Subsets are lifecycle-shaped rather than
+all-or-nothing, because installing a skill no stage reaches is a standing context cost.
 
 `contracts/` is the canonical repository source. The release build must copy the required pinned schema and instructions into the self-contained `digital-product` runtime artifact; installed skills must never rely on paths into another repository or on files excluded from the package.
 

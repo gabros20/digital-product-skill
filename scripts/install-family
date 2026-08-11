@@ -1,0 +1,255 @@
+#!/usr/bin/env bash
+# Install the Digital Product family — the composer plus any subset of the 14 specialist packs.
+# Each pack is installed from its own repository at its own HEAD; this script never vendors them.
+set -euo pipefail
+
+owner="gabros20"
+composer="digital-product"
+
+# The family table. Stage groups double as installable sets.
+set_define="product"
+set_design="design"
+set_shape="architecture"
+set_build="frontend backend data ai automation"
+set_assure="quality"
+set_run="operate"
+set_improve="growth success"
+set_distribute="marketing sales"
+set_all="$set_define $set_design $set_shape $set_build $set_assure $set_run $set_improve $set_distribute"
+set_core="product design architecture quality"
+
+want_set="all"
+target=""
+method="skills"
+ref="main"
+dry_run=0
+uninstall=0
+
+usage() {
+  cat <<'EOF'
+usage: install-family [options]
+
+  --set <name|list>   all (default) | core | define | design | shape | build |
+                      assure | run | improve | distribute
+                      …or a comma-separated list of pack names (product,design).
+                      Named sets always include the digital-product composer;
+                      an explicit list installs exactly what it names.
+  --target <client>   claude | codex | agents | cursor | antigravity |
+                      opencode | grok | hermes | all
+                      Omit to let the skills CLI auto-detect installed clients.
+  --method <how>      skills (default) — npx skills add, per pack; registers with
+                                         the ecosystem CLI so update/remove work
+                      clone            — sparse git clone + each pack's install.sh;
+                                         faster, covers all 8 targets, but the
+                                         result is invisible to `skills ls`
+  --ref <git-ref>     branch or tag to install from (default: main)
+  --uninstall         remove the selected packs instead of installing them
+  --dry-run           print what would run, change nothing
+  -h, --help          this message
+
+examples:
+  install-family --set all
+  install-family --set core --target claude
+  install-family --set build --method clone --target cursor
+  install-family --set product,design --dry-run
+  install-family --set all --uninstall --target claude
+EOF
+}
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --set)       want_set="${2:-}"; shift 2 ;;
+    --target)    target="${2:-}"; shift 2 ;;
+    --method)    method="${2:-}"; shift 2 ;;
+    --ref)       ref="${2:-}"; shift 2 ;;
+    --uninstall) uninstall=1; shift ;;
+    --dry-run)   dry_run=1; shift ;;
+    -h|--help)   usage; exit 0 ;;
+    *) echo "install-family: unknown option '$1'" >&2; usage >&2; exit 1 ;;
+  esac
+done
+
+[ -n "$want_set" ] || { echo "install-family: --set needs a value" >&2; exit 1; }
+
+case "$method" in
+  skills|clone) ;;
+  *) echo "install-family: --method must be 'skills' or 'clone'" >&2; exit 1 ;;
+esac
+
+# Resolve the pack list. A named set carries the composer; an explicit list does not.
+resolve_set() {
+  case "$1" in
+    all)        echo "$composer $set_all" ;;
+    core)       echo "$composer $set_core" ;;
+    define)     echo "$composer $set_define" ;;
+    design)     echo "$composer $set_design" ;;
+    shape)      echo "$composer $set_shape" ;;
+    build)      echo "$composer $set_build" ;;
+    assure)     echo "$composer $set_assure" ;;
+    run)        echo "$composer $set_run" ;;
+    improve)    echo "$composer $set_improve" ;;
+    distribute) echo "$composer $set_distribute" ;;
+    *)
+      # Comma-separated explicit list; validate every name against the family.
+      local out=""
+      local name
+      for name in $(echo "$1" | tr ',' ' '); do
+        case " $composer $set_all " in
+          *" $name "*) out="$out $name" ;;
+          *) echo "install-family: '$name' is not a family skill" >&2; return 1 ;;
+        esac
+      done
+      echo "${out# }"
+      ;;
+  esac
+}
+
+packs="$(resolve_set "$want_set")" || exit 1
+[ -n "$packs" ] || { echo "install-family: empty selection" >&2; exit 1; }
+
+# install.sh's target vocabulary → the skills CLI's agent identifiers.
+# 'agents' has no equivalent: the CLI's 'universal' agent writes to
+# $XDG_CONFIG_HOME/agents/skills, not ~/.agents/skills.
+agent_for_target() {
+  case "$1" in
+    claude)      echo "claude-code" ;;
+    codex)       echo "codex" ;;
+    cursor)      echo "cursor" ;;
+    antigravity) echo "antigravity-cli" ;;
+    opencode)    echo "opencode" ;;
+    grok)        echo "grok" ;;
+    hermes)      echo "hermes-agent" ;;
+    all)         echo "claude-code,codex" ;;
+    agents)      return 1 ;;
+    *)           return 1 ;;
+  esac
+}
+
+# Mirrors install.sh's target → directory map, for uninstall.
+target_dirs() {
+  case "$1" in
+    claude)      echo "$HOME/.claude/skills" ;;
+    codex)       echo "${CODEX_HOME:-$HOME/.codex}/skills" ;;
+    agents)      echo "$HOME/.agents/skills" ;;
+    cursor)      echo "$HOME/.cursor/skills" ;;
+    antigravity) echo "$HOME/.gemini/config/skills"; echo "$HOME/.gemini/antigravity-cli/skills" ;;
+    opencode)    echo "$HOME/.config/opencode/skills" ;;
+    grok)        echo "$HOME/.grok/skills" ;;
+    hermes)      echo "$HOME/.hermes/skills" ;;
+    all)         echo "$HOME/.claude/skills"
+                 echo "${CODEX_HOME:-$HOME/.codex}/skills"
+                 echo "$HOME/.agents/skills" ;;
+    *) echo "install-family: unknown target '$1'" >&2; return 1 ;;
+  esac
+}
+
+# Validate the target/agent mapping before announcing any work.
+agent_args=""
+if [ "$uninstall" -eq 0 ] && [ "$method" = "skills" ] && [ -n "$target" ]; then
+  if agent="$(agent_for_target "$target")"; then
+    agent_args="$agent"
+  else
+    echo "install-family: target '$target' has no skills-CLI equivalent; use --method clone" >&2
+    exit 1
+  fi
+fi
+
+run() {
+  if [ "$dry_run" -eq 1 ]; then
+    echo "  would run: $*"
+  else
+    "$@"
+  fi
+}
+
+count=0
+for _ in $packs; do count=$((count + 1)); done
+failed=""
+succeeded=0
+
+# ---- uninstall -------------------------------------------------------------
+if [ "$uninstall" -eq 1 ]; then
+  [ -n "$target" ] || target="claude"
+  dirs="$(target_dirs "$target")" || exit 1
+  echo "Removing $count skill(s) from target '$target'."
+  for pack in $packs; do
+    removed=0
+    while IFS= read -r dir; do
+      [ -n "$dir" ] || continue
+      if [ -e "$dir/$pack" ]; then
+        run rm -rf "$dir/$pack"
+        removed=1
+      fi
+    done <<EOF
+$dirs
+EOF
+    if [ "$removed" -eq 1 ]; then
+      echo "  removed  $pack"
+      succeeded=$((succeeded + 1))
+    else
+      echo "  absent   $pack"
+    fi
+  done
+  echo "Removed $succeeded of $count."
+  exit 0
+fi
+
+# ---- install ---------------------------------------------------------------
+echo "Installing $count skill(s) from $owner at ref '$ref' via '$method'."
+
+if [ "$method" = "skills" ]; then
+  command -v npx >/dev/null 2>&1 || {
+    echo "install-family: npx not found; use --method clone" >&2; exit 1; }
+
+  for pack in $packs; do
+    repo="$pack-skill"
+    source="$owner/$repo"
+    [ "$ref" = "main" ] || source="$source#$ref"
+    echo "→ $pack"
+    if [ -n "$agent_args" ]; then
+      run npx --yes skills@latest add "$source" --global --yes --agent "$agent_args" \
+        || { failed="$failed $pack"; continue; }
+    else
+      run npx --yes skills@latest add "$source" --global --yes \
+        || { failed="$failed $pack"; continue; }
+    fi
+    succeeded=$((succeeded + 1))
+  done
+else
+  command -v git >/dev/null 2>&1 || {
+    echo "install-family: git not found; use --method skills" >&2; exit 1; }
+  [ -n "$target" ] || target="claude"
+
+  tmp="$(mktemp -d)"
+  trap 'rm -rf "$tmp"' EXIT
+
+  for pack in $packs; do
+    repo="$pack-skill"
+    echo "→ $pack"
+    if ! run git clone --quiet --depth 1 --filter=blob:none --sparse \
+        --branch "$ref" "https://github.com/$owner/$repo.git" "$tmp/$repo"; then
+      failed="$failed $pack"
+      continue
+    fi
+    # Cone mode always keeps root files, so install.sh comes along with the skill.
+    if [ "$dry_run" -eq 0 ]; then
+      git -C "$tmp/$repo" sparse-checkout set "skills/$pack" >/dev/null
+    fi
+    if run bash "$tmp/$repo/install.sh" "$target"; then
+      succeeded=$((succeeded + 1))
+    else
+      failed="$failed $pack"
+    fi
+  done
+fi
+
+echo
+echo "Installed $succeeded of $count."
+if [ -n "$failed" ]; then
+  echo "Failed:$failed" >&2
+  exit 1
+fi
+
+if [ "$dry_run" -eq 0 ]; then
+  echo "The composer routes; load a specialist only when its stage begins."
+fi

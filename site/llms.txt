@@ -24,6 +24,16 @@ on Codex, Cursor, Antigravity, opencode, Grok Build, and Hermes too.
 - Clone + installer (per-host targets: claude | codex | agents | cursor | antigravity | opencode | grok | hermes | all): `git clone https://github.com/gabros20/digital-product-skill && cd digital-product-skill && ./install.sh claude`
 - Manual copy: `cp -R skills/digital-product ~/.claude/skills/digital-product`
 - Specialists install the same way, one at a time: `npx skills add gabros20/<pack>-skill -g -y`
+- Whole family in one command: `curl -fsSL https://raw.githubusercontent.com/gabros20/digital-product-skill/main/scripts/install-family | bash -s -- --set all`
+- Family sets (each includes the composer): all | core | define | design | shape | build | assure | run | improve | distribute; or an explicit list, `--set product,design`. Installing all fourteen adds ~2.4k tokens of always-on skill descriptions per session, so the sets exist to subtract.
+- Family installer flags: `--target <client>` (the 8 targets above), `--ref <branch|tag>`, `--method skills|clone`, `--dry-run`, `--uninstall`. Each pack installs from its own repository at its own HEAD; nothing is vendored into the composer.
+- Project-scoped (all 15 into one repo's .agents/skills/): `curl -fsSL https://raw.githubusercontent.com/gabros20/digital-product-skill/main/skills-lock.json -o skills-lock.json && npx skills experimental_install`
+
+## Update
+
+- Packs installed via `npx skills add` or the installer's default `skills` method update by name: `npx skills update quality operate -g -y`, or `npx skills update -g -y` for all global skills.
+- Packs installed with `--method clone` are recorded as `Source: local` and `skills update` refuses them ("No installed skills found matching: <pack>"). Re-run the installer for just those packs instead: `./scripts/install-family --set quality,operate --method clone` — each pack's install.sh replaces in place and restores the previous copy on failure.
+- Project-scoped: re-run `npx skills experimental_install` to restore every skills-lock.json entry at current HEAD.
 
 ## Docs
 

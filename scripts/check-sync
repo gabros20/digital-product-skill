@@ -7,6 +7,7 @@ root="$(cd "$(dirname "$0")/.." && pwd)"
 bash -n "$root/install.sh" "$root/scripts/check-sync"
 [ ! -f "$root/scripts/init" ] || bash -n "$root/scripts/init"
 [ ! -f "$root/scripts/test-init" ] || bash -n "$root/scripts/test-init"
+[ ! -f "$root/scripts/install-family" ] || bash -n "$root/scripts/install-family"
 python3 -m py_compile "$root/scripts/lint-skill" "$root/scripts/count-skill-tokens"
 
 if [ -d "$root/skills/__SKILL_NAME__" ]; then

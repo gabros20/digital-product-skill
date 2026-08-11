@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "skills": {
+    "ai": {
+      "source": "gabros20/ai-skill",
+      "sourceType": "github"
+    },
+    "architecture": {
+      "source": "gabros20/architecture-skill",
+      "sourceType": "github"
+    },
+    "automation": {
+      "source": "gabros20/automation-skill",
+      "sourceType": "github"
+    },
+    "backend": {
+      "source": "gabros20/backend-skill",
+      "sourceType": "github"
+    },
+    "data": {
+      "source": "gabros20/data-skill",
+      "sourceType": "github"
+    },
+    "design": {
+      "source": "gabros20/design-skill",
+      "sourceType": "github"
+    },
+    "digital-product": {
+      "source": "gabros20/digital-product-skill",
+      "sourceType": "github"
+    },
+    "frontend": {
+      "source": "gabros20/frontend-skill",
+      "sourceType": "github"
+    },
+    "growth": {
+      "source": "gabros20/growth-skill",
+      "sourceType": "github"
+    },
+    "marketing": {
+      "source": "gabros20/marketing-skill",
+      "sourceType": "github"
+    },
+    "operate": {
+      "source": "gabros20/operate-skill",
+      "sourceType": "github"
+    },
+    "product": {
+      "source": "gabros20/product-skill",
+      "sourceType": "github"
+    },
+    "quality": {
+      "source": "gabros20/quality-skill",
+      "sourceType": "github"
+    },
+    "sales": {
+      "source": "gabros20/sales-skill",
+      "sourceType": "github"
+    },
+    "success": {
+      "source": "gabros20/success-skill",
+      "sourceType": "github"
+    }
+  }
+}

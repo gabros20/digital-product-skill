@@ -542,7 +542,11 @@
   <p class="rule" style="margin-top:22px"><svg class="lu" aria-hidden="true"><use href="#lu-download"/></svg><span><b>Install only what you need.</b>
   Each one installs on its own with <code>npx skills add gabros20/&lt;pack&gt;-skill -g -y</code>, and
   works with no composer present. The composer detects what is installed and names the exact command
-  for anything missing, then continues with what exists.</span></p>
+  for anything missing, then continues with what exists. There is a one-command family installer
+  with lifecycle-shaped sets — <code>--set core</code>, <code>--set build</code>,
+  <code>--set all</code> — but all fourteen is a real cost, not a free default: roughly
+  <b>2.4k tokens of always-on skill descriptions</b> in every session, whether or not a stage ever
+  reaches them.</span></p>
 </section>
 
 <section id="subtraction">
@@ -705,6 +709,14 @@ npx skills add gabros20/digital-product-skill -g -y
 npx skills add gabros20/product-skill -g -y
 npx skills add gabros20/backend-skill -g -y
 
+<span class="c"># or the whole family in one command — sets follow the lifecycle</span>
+curl -fsSL https://raw.githubusercontent.com/gabros20/digital-product-skill/main/scripts/install-family | bash -s -- --set all
+<span class="c"># --set all | core | define | design | shape | build | assure | run | improve | distribute</span>
+<span class="c">#      …or an explicit list: --set product,design</span>
+
+<span class="c"># update only the packs that moved</span>
+npx skills update quality operate -g -y
+
 <span class="c"># or from a clone — installs into any of 8 client targets</span>
 git clone https://github.com/gabros20/digital-product-skill
 cd digital-product-skill &amp;&amp; ./install.sh claude
@@ -724,8 +736,11 @@ cd digital-product-skill &amp;&amp; ./install.sh claude
                           <span class="d">lifecycle-map · artifact-convention · coordination · seam-rulings</span>
 <span class="hl">evals/</span>                    <span class="d">4 suites, 31 cases — activation (14), traversal (8), output (6),</span>
                           <span class="d">compression-ablation (3); repository-only, never installed</span>
-<span class="hl">docs/</span>                     <span class="d">the family's research corpus and architecture decisions</span>
-<span class="hl">research/</span>                 <span class="d">multi-channel research corpora from the family's build phase</span>
+<span class="hl">scripts/</span>                  <span class="d">install-family (the composer + any subset, each pack from</span>
+                          <span class="d">its own repo) · check-sync · lint-skill</span>
+<span class="hl">skills-lock.json</span>          <span class="d">project-scoped install of all 15 via experimental_install</span>
+<span class="hl">docs/</span>                     <span class="d">the family's architecture decisions and lifecycle research</span>
+                          <span class="d">(each pack's own corpus lives in that pack's repo)</span>
 <span class="hl">site/</span>                     <span class="d">this page</span>
 README.md · SOURCES.md · AGENTS.md · LICENSE</div>
       <p>The eval prompts deliberately voice the confusions this skill exists to handle — asking it

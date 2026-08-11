@@ -3,7 +3,8 @@
 This repository is the released `digital-product-skill`: the composer for the Digital Product
 Skills family. The runtime skill lives under `skills/digital-product/`; the repository and Codex
 plugin use the `-skill` suffix. The repository also carries the family's canonical research and
-architecture docs under `docs/` and `research/`. Read this before editing.
+architecture docs under `docs/`. Each pack's own multi-channel research corpus belongs in that
+pack's repository (`<pack>-skill/research/`), never here. Read this before editing.
 
 ## Ownership boundary (non-negotiable)
 
