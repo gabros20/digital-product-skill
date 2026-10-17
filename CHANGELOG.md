@@ -8,6 +8,11 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
+- Queue unreleased changes here.
+
+## [0.2.0] — 2026-10-17
+
+### Added
 - `seam-rulings.md` standing split for voice agents (2026-10-17): `ai` voice cognition · `backend`
   transport · `marketing` outbound consent (`sales` cites) · `success` inbound support-line duties ·
   `operate` recording retention and cost · `quality` caller's-ear verification.
@@ -72,4 +77,5 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
   soft-ceiling ruling (several shipped siblings range 611–738); the routing facts earn the
   overage.
 
+[0.2.0]: https://github.com/gabros20/digital-product-skill/releases/tag/v0.2.0
 [0.1.0]: https://github.com/gabros20/digital-product-skill/releases/tag/v0.1.0
