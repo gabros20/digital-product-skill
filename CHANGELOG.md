@@ -8,6 +8,10 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
+- `seam-rulings.md` standing ownership splits for agent products (2026-10-17): agent sandboxes
+  (`ai` names · `backend` builds the adapter · `operate` runs the provider), memory forget (`ai`)
+  vs corpus deletion (`data`), and agent-run events (`architecture` shape · `backend` serves ·
+  `frontend` renders) — cited into the owning packs' current releases.
 - `scripts/install-family`: one-command installation of the composer plus any subset of the 14
   specialists. Each pack installs from its own repository at its own HEAD — nothing is vendored,
   so every pack stays on its own release line. Lifecycle-shaped `--set` values (`all`, `core`,

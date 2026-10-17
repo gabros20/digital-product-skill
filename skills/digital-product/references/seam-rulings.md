@@ -91,6 +91,24 @@ onward.
 - **Voluntary/involuntary churn**: the split is defined by `product` (it owns the involuntary
   mechanism); `success` requires the split before drawing any retention conclusion; `growth`
   reads trends on top of it.
+- **Agent sandboxes**: `ai` names which tools need isolated execution
+  (`ai/references/handoff.md` "What `ai` hands downstream"); `backend` builds the environment
+  adapter and its controls — per-run identity, egress allowlist, scoped credentials, artifacts out
+  before teardown (`backend/references/surface-agentic.md` "Run control: approvals, version pins,
+  budgets, linked lifecycles"); `operate` picks the provider, sizes capacity, monitors teardown, and
+  pins the template digest (`operate/references/surface-ai-system.md` "Agent sandboxes in
+  production").
+- **Memory forget vs corpus deletion**: the memory record and its forget path are `ai`'s
+  (`ai/references/memory.md` "Governed memory — applies to all four philosophies"); a source
+  document's deletion and revocation through the corpus and its index are `data`'s
+  (`data/references/surface-ai-data-plane.md` "RAG corpus as governed ETL"). `quality`'s deletion
+  drill names both owners (`quality/references/surface-ai-system.md` "Recovery and side-effect
+  evidence").
+- **Agent-run events**: the event contract's shape is `architecture`'s
+  (`architecture/references/contracts.md` "Contract-first design"); `backend` serves the replayable
+  log (`backend/references/surface-realtime.md` "Replayable run events — when the stream reports a
+  run that outlives the connection"); `frontend` renders and resumes it
+  (`frontend/references/state-and-data.md` "Agent-run streaming client").
 
 ## Deliberately contested seams
 
