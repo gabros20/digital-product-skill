@@ -8,6 +8,9 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
+- `seam-rulings.md` standing split for voice agents (2026-10-17): `ai` voice cognition · `backend`
+  transport · `marketing` outbound consent (`sales` cites) · `success` inbound support-line duties ·
+  `operate` recording retention and cost · `quality` caller's-ear verification.
 - `seam-rulings.md` standing ownership splits for agent products (2026-10-17): agent sandboxes
   (`ai` names · `backend` builds the adapter · `operate` runs the provider), memory forget (`ai`)
   vs corpus deletion (`data`), and agent-run events (`architecture` shape · `backend` serves ·

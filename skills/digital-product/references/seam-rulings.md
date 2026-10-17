@@ -109,6 +109,19 @@ onward.
   log (`backend/references/surface-realtime.md` "Replayable run events — when the stream reports a
   run that outlives the connection"); `frontend` renders and resumes it
   (`frontend/references/state-and-data.md` "Agent-run streaming client").
+- **Voice agents**: the voice cognition — cascade vs speech-to-speech, turn-taking, speech
+  components, voice evals, call guardrails — is `ai`'s (`ai/references/surface-voice.md` "Surface:
+  Voice (additive)"); media transport is `backend`'s (`backend/references/surface-realtime.md`
+  "Voice media transport — the substrate under a voice agent"); consent for outbound AI calls is
+  `marketing`'s (`marketing/references/lifecycle-and-email.md` "Outbound AI-voice calls are
+  automated calls"), which `sales` cites and never restates
+  (`sales/references/outbound-and-prospecting.md` "The AI-outbound disclosure rule"); inbound AI
+  support-line duties are `success`'s (`success/references/ai-support-policy.md` "AI voice support
+  lines: disclose first, keep a person reachable"); recording retention and per-minute cost are
+  `operate`'s (`operate/references/observability.md` "AI-system observability — same discipline, one
+  new signal"; `capacity-and-cost.md` "The 2020s-specific version: agent and LLM spend scales with
+  activity, not users"); caller's-ear verification is `quality`'s
+  (`quality/references/surface-ai-system.md` "Voice: evidence at the caller's ear").
 
 ## Deliberately contested seams
 
