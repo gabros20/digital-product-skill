@@ -33,6 +33,8 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
   reaches is pure context cost.
 - `scripts/check-sync` syntax-checks `scripts/install-family` when present (guarded, so the
   universal gate stays shared with the template).
+- `site/index.html` names the standing ownership splits (agent sandboxes, memory forget vs corpus
+  deletion, agent-run events, voice agents) beside vocabulary law and the graceful mis-route.
 - README, `site/index.html`, `site/llms.txt`, and `docs/README.md` document the family install and
   the three update paths; `docs/README.md` ties "nothing is vendored" to ADR-0003, since vendoring
   the specialists here would make one repository's release the source of another's content.
