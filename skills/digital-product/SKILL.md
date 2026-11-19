@@ -66,7 +66,7 @@ Two things this skill is explicitly not:
 | Sequence or resume multi-stage work | [lifecycle-map](references/lifecycle-map.md) | Stage order, what is skippable, the handoff chain between stages; resume from LEDGER.md, not memory |
 | Set up or maintain the shared artifact folder | [artifact-convention](references/artifact-convention.md) | `digital-product/` layout, LEDGER.md format, what gets committed, the `.orchestrate/` boundary |
 | Settle a cross-skill boundary, collision, or ownership question | [seam-rulings](references/seam-rulings.md) | The family's dated rulings, the deliberately contested seams, and the known graceful mis-routes |
-| Run coordinated work across several skills | [coordination](references/coordination.md) | Mode selection; the brief and report contracts; the ledger discipline |
+| Run coordinated work across several skills | [coordination](references/coordination.md) | One merged intake; mode selection; the brief and report contracts; the ledger discipline |
 | Scale up to explicit multi-agent execution | [coordination](references/coordination.md) Mode 3 | The plan-file handoff to `orchestrate`; what state lives where |
 
 ### The family
@@ -104,6 +104,9 @@ One line per pack — enough to route. Load a pack's own SKILL.md before doing i
   (and `handoff.yaml` where the pack defines one), never a summary that replaces the artifact.
 - **Never absorb a specialist's knowledge.** If an answer requires a pack's content, load that pack
   — do not paraphrase it from this skill's own tables, which exist only to route.
+- **Ask once, record once.** A fact in the ledger's Context block is never asked again — not by the
+  composer, not by a pack in the run; discovery is `product`'s when it runs
+  ([seam-rulings](references/seam-rulings.md)).
 - **State what was skipped.** A stage plan names the stages deliberately not run and why — a
   silent skip reads as coverage that never happened.
 
@@ -111,7 +114,9 @@ One line per pack — enough to route. Load a pack's own SKILL.md before doing i
 
 1. Classify the request: single-domain (route and stop), multi-stage (plan), boundary question
    (registry), or coordination question (mode).
-2. Establish or read `digital-product/LEDGER.md`; create the folder on first use.
+2. Establish or read `digital-product/LEDGER.md` and its Context block; create the folder on first
+   use. For multi-stage work, ask the user once for every pack
+   ([coordination](references/coordination.md) "One merged intake"); never re-ask a Context fact.
 3. For multi-stage work: name the entry stage, the minimal path, and the coordination mode; record
    the plan in the ledger.
 4. Execute stage by stage — load the pack, do the work in its voice, land artifacts in its

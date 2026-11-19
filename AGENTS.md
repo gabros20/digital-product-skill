@@ -45,7 +45,10 @@ single-domain request routes to its pack in one line — no stage plan, no cerem
    when the user explicitly asks and it is installed.
 7. **Never absorb a specialist's knowledge.** The composer's tables exist to route; doing a
    stage's work means loading that pack and working in its voice.
-8. **Repo-relative paths everywhere** — in ledgers, briefs, and research artifacts; the lint's
+8. **Ask once, record once.** A family run asks the user one merged round per stage group; every
+   answer and assumption lands in the ledger's Context block, and no pack re-asks a fact recorded
+   there (`references/coordination.md` "One merged intake").
+9. **Repo-relative paths everywhere** — in ledgers, briefs, and research artifacts; the lint's
    portability guard enforces this for runtime content.
 
 ## Required behavior

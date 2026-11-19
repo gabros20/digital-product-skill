@@ -57,5 +57,26 @@
       "does not build a stage plan or create composer overhead around a one-skill job",
       "does not paraphrase product's PRD methodology from the composer's own tables"
     ]
+  },
+  {
+    "id": "contract-merged-intake",
+    "prompt": "Start a new product: a web app that lets small gyms manage class bookings. Take it from the idea through design to a built first version.",
+    "assertions": [
+      "reads or creates digital-product/LEDGER.md and its Context block before asking the user anything",
+      "asks one round of at most four questions, merged from the first stage's packs, each with a recommended answer",
+      "does not ask anything the repo or the conversation already answers",
+      "records answers as confirmed Context lines and anything unanswered as assumed lines with basis, owner pack and cost to reverse",
+      "later stages do not re-ask a fact the Context block holds; a pack that is blocked returns needs-context instead of questioning the user"
+    ]
+  },
+  {
+    "id": "contract-discovery-seam",
+    "prompt": "Product already ran discovery and our LEDGER has a filled Context block. Design is starting now: should design run its own intake questions with the user?",
+    "assertions": [
+      "answers from the discovery and intake ruling (2026-11-19): discovery is product's when product runs",
+      "design inherits the Context block and asks only its own residue that no Context line covers",
+      "states that design's standalone context check applies only when no LEDGER Context covers it",
+      "in a composed run, routes any remaining design question through the composer's one merged intake rather than design asking directly"
+    ]
   }
 ]

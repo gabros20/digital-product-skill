@@ -131,6 +131,15 @@ onward.
   belong to the standalone `scroll-animation` skill; 3D/WebGL scenes and every particle tier to
   the standalone `3d` skill. Retires frontend's former "animation, future" deferral.
 
+- **Discovery and intake** (2026-11-19): discovery — who it is for, what problem, what success
+  looks like — is `product`'s when `product` runs (`product/references/discovery.md`); later packs
+  inherit it from the ledger's Context block and ask only their own residue. Each pack's own
+  "Standalone context check" (its SKILL.md) applies only to what no Context line covers: standalone,
+  a pack asks its short set and writes the answers to the same Context block
+  ([artifact-convention](artifact-convention.md)), so a later family run starts from them; in a
+  composed run the composer asks once for every pack ([coordination](coordination.md) "One merged
+  intake").
+
 ## Deliberately contested seams
 
 Present both positions; neither the composer nor either pack adjudicates.

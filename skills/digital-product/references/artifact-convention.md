@@ -8,6 +8,7 @@ Read when:
 - Starting family work in a repository that has no `digital-product/` folder yet.
 - Deciding where a deliverable, research file, or handoff companion should be written.
 - Resuming work and needing to reconstruct state from disk.
+- A pack is about to ask the user for context: the ledger's Context block may already hold it.
 
 Skip when:
 - The question is which stage runs next → [lifecycle-map](lifecycle-map.md).
@@ -15,8 +16,8 @@ Skip when:
 
 Inputs: the working repository's root, and which pack is about to produce something.
 
-Produces: the folder and ledger, created on first use; every subsequent deliverable landing in a
-predictable path.
+Produces: the folder and ledger (its Context block holding the shared facts and assumptions),
+created on first use; every subsequent deliverable landing in a predictable path.
 
 ## Contents
 
@@ -71,6 +72,18 @@ The ledger is deliberately thin — state, not narrative. Format:
 Stage: <current stage or "between <a> and <b>">
 Updated: <date>
 
+## Context
+- Product: <one line: what it is> (<source>, <confirmed | assumed>)
+- Audience: <who it is for, what they must believe before acting> (…)
+- Primary action / success: <the one thing a user should do; the metric that says it worked> (…)
+- Stage: <idea | building | live | growing> (…)
+- Constraints: <deadline, budget, team, platforms, languages, brand, legal, accessibility> (…)
+- Assets on hand: <logo, colours, type, copy, photos, screenshots, data, an existing product> (…)
+- Stack and hosting: <what exists or is given; who maintains it> (…)
+- References: <one to three liked, one to avoid> (…)
+- <pack>: <an answer only that pack needs> (…)
+- Assumption: <what was assumed> — basis <why>; owner <pack>; cost to reverse <low | medium | high>
+
 ## Plan
 Entry: <stage> — <why>. Path: <stage → stage → …>.
 Skipped: <stage> — <reason>. (one line per skipped stage)
@@ -87,6 +100,15 @@ Skipped: <stage> — <reason>. (one line per skipped stage)
 
 Discipline:
 
+- **Context comes first, and is read before anyone asks.** Every pack, composed or standalone,
+  reads the Context block before questioning the user: a fact recorded there is never re-asked.
+  Each line names its source (the user, a repo path, a pack) and whether it is `confirmed` or
+  `assumed`. A pack adds only lines it learned; a user's answer promotes an assumption to
+  `confirmed`; a pack that needs a confirmed fact changed records the conflict under Decisions and
+  asks, never overwrites. A standalone pack that creates the ledger may leave Plan and Next empty.
+  The fields mirror the shared questions of every pack's "Standalone context check"; the Context
+  questions themselves are the packs', asked once per run per
+  [coordination](coordination.md) "One merged intake".
 - **Append at every stage transition, decision, and produced artifact — before moving on.** The
   composer's SKILL.md calls this ledger-before-memory: on resume, the ledger and the disk are
   trusted over any recollection of the conversation.
@@ -107,6 +129,8 @@ for runtime skill content.
 ## Validation
 
 - `digital-product/LEDGER.md` exists before any other family artifact is written.
+- No Context line is asked of the user twice; every `assumed` line names its owner pack and cost to
+  reverse.
 - Every artifact the ledger names exists at the named path; every artifact on disk under
   `digital-product/` is named in the ledger.
 - No deliverable lives under `.orchestrate/`.
@@ -118,5 +142,8 @@ for runtime skill content.
   record the move in the ledger; do not maintain two conventions in one repo.
 - **The ledger becomes a diary** — narrative belongs in the artifacts; trim ledger entries back to
   pointers and single-line decisions.
+- **Context scattered into briefs or pack notes** — a fact the user gave lives once, in the
+  Context block; briefs and pack artifacts point at it rather than copying it, so a correction
+  lands everywhere.
 - **A pack invents a parallel state file** — the ledger is the one cross-pack state; pack-internal
   records live inside that pack's subfolder and are pointed to, not duplicated.

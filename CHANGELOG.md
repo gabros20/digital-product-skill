@@ -8,6 +8,14 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
+- Ask once, record once. `artifact-convention.md` gives `LEDGER.md` a `## Context` block: shared
+  facts with source and confirmed/assumed status, pack-specific answers, and assumptions with owner
+  and cost to reverse. Every pack reads it before asking. `coordination.md` adds "One merged
+  intake": one round of at most four questions per stage group, merged from the first stage's packs;
+  a pack in a run returns `needs-context` instead of asking. The brief and report contracts gain
+  Context, `needs-context` and Assumptions lines. `seam-rulings.md` rules discovery and intake
+  (2026-11-19): discovery is `product`'s; a pack's standalone context check covers only what no
+  Context line does. SKILL.md workflow and invariant, AGENTS.md invariant 8, two output evals.
 - Standing ownership split for UI motion: `design` owns motion intent, values and
   choreography; `frontend` owns component motion code (enter/exit, springs, gestures, layout and
   reorder animation); scroll-linked motion and page transitions stay with the standalone

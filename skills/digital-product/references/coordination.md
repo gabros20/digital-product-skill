@@ -18,12 +18,14 @@ Skip when:
 Inputs: the stage plan, the host's capabilities (can it spawn subagents at all), and whether
 `orchestrate` is installed.
 
-Produces: a mode decision recorded in the ledger, and — in mode 2 — briefs and reports that
-follow the contracts below; in mode 3 — a plan file `orchestrate` can consume.
+Produces: one merged intake recorded in the ledger's Context block, a mode decision recorded in the
+ledger, and — in mode 2 — briefs and reports that follow the contracts below; in mode 3 — a plan
+file `orchestrate` can consume.
 
 ## Contents
 
 - Mode selection
+- One merged intake
 - Mode 1: in-context (default)
 - Mode 2: native subagents
 - Mode 3: hand the plan to orchestrate
@@ -45,6 +47,27 @@ Two hard rules: mode 3 is **opt-in by the user**, never inferred from task size;
 never re-implements what mode 3 provides — no strategy presets, no review gates, no model routing,
 no worktree isolation, no monitoring loops. If those are needed and `orchestrate` is absent, say
 so and continue in mode 1 or 2.
+
+## One merged intake
+
+A family run asks the user once; packs never re-ask what another pack or the repo already
+answered. Before the first stage, in every mode:
+
+1. Read the ledger's Context block (create it per
+   [artifact-convention](artifact-convention.md)), the repo, and the conversation.
+2. Gather the context questions of each pack in the plan's first stage (each pack's "Standalone
+   context check", read as its stage is entered; never preload later packs); drop those Context or
+   the repo already answers; merge duplicates.
+3. Ask once: one round, at most four questions, highest leverage first, each with a recommended
+   answer ("ok" accepts them all). What goes unasked or unanswered becomes an `assumed` Context
+   line with its basis, owner pack and cost to reverse; never block on it.
+4. Record answers as `confirmed` Context lines; a later stage repeats steps 2–4 only for its own
+   residue.
+
+Inside a run a pack does not question the user. It reads Context, records new assumptions there,
+and, when one answer truly blocks it, stops with `needs-context` and that one question for the
+composer to batch into the next round. A pack that needs a confirmed fact changed raises the
+conflict; it never overwrites the line.
 
 ## Mode 1: in-context (default)
 
@@ -100,6 +123,7 @@ entire job is to produce a good plan and get out of the way:
 ```markdown
 # Brief — <stage>: <one-line objective>
 Pack: <skill to load and obey>
+Context: digital-product/LEDGER.md ## Context — read first; do not question the user
 Model: <explicitly pinned model/effort tier for this dispatch — an omitted model inherits an
 unintended (often expensive) default; pin the cheapest tier the stage's difficulty honestly needs>
 Inputs: <repo-relative paths + the specific upstream decisions that bind you>
@@ -113,9 +137,10 @@ Report: dense, ≤1 page, contract below.
 
 ```markdown
 # Report — <stage>
-Outcome: <done | partial | blocked> — one sentence.
+Outcome: <done | partial | blocked | needs-context: the one blocking question> — one sentence.
 Artifacts: <path — one-line status> (one per line)
 Decisions made: <one line each, flagged if any bent a constraint>
+Assumptions: <new Context lines recorded, or "none">
 Open: <what remains, what surprised, what the next stage must know>
 ```
 
@@ -124,6 +149,7 @@ does not poll for narrative.
 
 ## Validation
 
+- The user was asked at most one round per stage group, and nothing the Context block already held.
 - The chosen mode is recorded in the ledger with its one-line justification.
 - Mode 2 dispatches only stages verified independent; shared-file stages run sequentially.
 - Mode 3 was explicitly requested by the user, and the plan file names artifact destinations
@@ -140,5 +166,7 @@ does not poll for narrative.
   brief → report → ledger.
 - **Reconciling from summaries** — after a mode-2 or mode-3 run, updating the ledger from reports
   without checking the disk records artifacts that may not exist. The disk is the truth.
+- **Every pack runs its own intake** — the user answers the same "who is it for" four times. Merge
+  the questions up front; a pack that still needs one returns `needs-context` instead of asking.
 - **Briefs that inline upstream content** — a brief points at artifacts; pasting the PRD into
   every brief spends context and drifts from the source.
