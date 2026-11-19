@@ -80,6 +80,7 @@ Updated: <date>
 - Constraints: <deadline, budget, team, platforms, languages, brand, legal, accessibility> (…)
 - Assets on hand: <logo, colours, type, copy, photos, screenshots, data, an existing product> (…)
 - Stack and hosting: <what exists or is given; who maintains it> (…)
+- Design source: <handoff, Figma file, comp, existing site, or none> (…)
 - References: <one to three liked, one to avoid> (…)
 - <pack>: <an answer only that pack needs> (…)
 - Assumption: <what was assumed> — basis <why>; owner <pack>; cost to reverse <low | medium | high>

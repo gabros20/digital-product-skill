@@ -59,7 +59,9 @@ answered. Before the first stage, in every mode:
    context check", read as its stage is entered; never preload later packs); drop those Context or
    the repo already answers; merge duplicates.
 3. Ask once: one round, at most four questions, highest leverage first, each with a recommended
-   answer ("ok" accepts them all). What goes unasked or unanswered becomes an `assumed` Context
+   answer ("ok" accepts them all). A second round, also capped at four, is allowed only when an
+   answer changed the direction (a different audience, platform or scope) and opened questions the
+   first round could not have asked; never more than two. What goes unasked or unanswered becomes an `assumed` Context
    line with its basis, owner pack and cost to reverse; never block on it.
 4. Record answers as `confirmed` Context lines; a later stage repeats steps 2–4 only for its own
    residue.
@@ -107,7 +109,9 @@ When the user wants explicit multi-agent execution and `orchestrate` is installe
 entire job is to produce a good plan and get out of the way:
 
 1. Write the plan as a file (in `digital-product/`, pointed from the ledger): the stages, per-stage
-   briefs (contract below), artifact destinations, and any ordering constraints.
+   briefs (contract below), artifact destinations, any ordering constraints, and a pointer to the
+   ledger's Context block (`digital-product/LEDGER.md` `## Context`), filled by the merged intake
+   before the hand-off, so no worker questions the user.
 2. Invoke `orchestrate` with that plan file. A plan file is exactly its input grammar; strategy
    selection, review gates, and budgets are its decisions, configured by the user.
 3. State split, permanently: `.orchestrate/` holds execution state (briefs-in-flight, worker
