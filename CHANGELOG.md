@@ -8,6 +8,11 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
+- Queue unreleased changes here.
+
+## [0.3.0] — 2026-11-19
+
+### Added
 - Ask once, record once. `artifact-convention.md` gives `LEDGER.md` a `## Context` block: shared
   facts with source and confirmed/assumed status, pack-specific answers, and assumptions with owner
   and cost to reverse. Every pack reads it before asking. `coordination.md` adds "One merged
@@ -88,5 +93,6 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
   soft-ceiling ruling (several shipped siblings range 611–738); the routing facts earn the
   overage.
 
+[0.3.0]: https://github.com/gabros20/digital-product-skill/releases/tag/v0.3.0
 [0.2.0]: https://github.com/gabros20/digital-product-skill/releases/tag/v0.2.0
 [0.1.0]: https://github.com/gabros20/digital-product-skill/releases/tag/v0.1.0
