@@ -122,6 +122,14 @@ onward.
   new signal"; `capacity-and-cost.md` "The 2020s-specific version: agent and LLM spend scales with
   activity, not users"); caller's-ear verification is `quality`'s
   (`quality/references/surface-ai-system.md` "Voice: evidence at the caller's ear").
+- **UI motion** (2026-11-19): motion intent, values and choreography are `design`'s
+  (`design/references/motion.md` "Canonical scale"; `choreography.md` "Cast and relate"); the
+  component motion code — enter/exit, springs, gestures and drag, height and layout changes,
+  product-UI reorder and filter — is `frontend`'s (`frontend/references/ui-motion.md` "Pick the
+  cheapest driver", "Height and layout changes"), consuming design's values and never restating
+  them. Scroll-linked motion, scroll entrances, page transitions and editorial in-route morphs
+  belong to the standalone `scroll-animation` skill; 3D/WebGL scenes and every particle tier to
+  the standalone `3d` skill. Retires frontend's former "animation, future" deferral.
 
 ## Deliberately contested seams
 

@@ -8,7 +8,10 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
-- Queue unreleased changes here.
+- Standing ownership split for UI motion: `design` owns motion intent, values and
+  choreography; `frontend` owns component motion code (enter/exit, springs, gestures, layout and
+  reorder animation); scroll-linked motion and page transitions stay with the standalone
+  `scroll-animation` skill, 3D scenes and particles with `3d`.
 
 ## [0.2.0] — 2026-10-17
 
