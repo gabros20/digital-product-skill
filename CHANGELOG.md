@@ -10,6 +10,14 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ### Added
 - Queue unreleased changes here.
 
+## [0.3.1] — 2026-11-20
+
+### Added
+- Standing ownership split for scroll reveals, view transitions and scroll-driven 3D: content
+  reveals by trigger (design), route-level view transitions are scroll-animation's and component
+  state transitions frontend's, and scroll-animation pins feed the 3d conductor through
+  render-bridge on one shared pin ruler (design 0.3.1, frontend 0.5.1, 3d 0.9.1).
+
 ## [0.3.0] — 2026-11-19
 
 ### Added
@@ -93,6 +101,7 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
   soft-ceiling ruling (several shipped siblings range 611–738); the routing facts earn the
   overage.
 
+[0.3.1]: https://github.com/gabros20/digital-product-skill/releases/tag/v0.3.1
 [0.3.0]: https://github.com/gabros20/digital-product-skill/releases/tag/v0.3.0
 [0.2.0]: https://github.com/gabros20/digital-product-skill/releases/tag/v0.2.0
 [0.1.0]: https://github.com/gabros20/digital-product-skill/releases/tag/v0.1.0

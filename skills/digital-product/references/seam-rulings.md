@@ -130,6 +130,14 @@ onward.
   them. Scroll-linked motion, scroll entrances, page transitions and editorial in-route morphs
   belong to the standalone `scroll-animation` skill; 3D/WebGL scenes and every particle tier to
   the standalone `3d` skill. Retires frontend's former "animation, future" deferral.
+- **Scroll reveals, view transitions, scroll-driven 3D** (2026-11-20): content (text, cards)
+  arrives by trigger with the pre-JS gate; decoration and media may scrub on `view()`
+  (`design/references/choreography.md` "Scroll and reveal"). Route-level view transitions and
+  their wiring are `scroll-animation`'s; a component state transition is `frontend`'s
+  (`frontend/references/web-platform-runtime.md` "View Transitions wiring (browser + React
+  layer)"). Inside a `scroll-animation` pin the scene feeds the `3d` conductor through
+  render-bridge and no `3d` scroll adapter attaches; both measure the pin's own box
+  (`3d/references/scroll-conductor.md` "Ownership with `scroll-animation`").
 
 - **Discovery and intake** (2026-11-19): discovery — who it is for, what problem, what success
   looks like — is `product`'s when `product` runs (`product/references/discovery.md`); later packs
