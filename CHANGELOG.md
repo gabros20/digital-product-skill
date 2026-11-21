@@ -10,6 +10,15 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ### Added
 - Queue unreleased changes here.
 
+## [0.3.2] — 2026-11-21
+
+### Added
+- Standing ownership split for a live scene or heavy layer behind a page-load entrance: the entrance
+  and its DOM signal (`data-entrance`, `entrance:phase`) are scroll-animation's, the scene's prepare,
+  reveal and run stages are 3d's (keyed off the signal, timeout from navigation start), costly starts
+  queue on `settled` under scroll-animation's hero budget, and the busy hero's order is design's
+  (design 0.3.2, scroll-animation 2.1.0, 3d 0.10.0).
+
 ## [0.3.1] — 2026-11-20
 
 ### Added

@@ -138,6 +138,15 @@ onward.
   layer)"). Inside a `scroll-animation` pin the scene feeds the `3d` conductor through
   render-bridge and no `3d` scroll adapter attaches; both measure the pin's own box
   (`3d/references/scroll-conductor.md` "Ownership with `scroll-animation`").
+- **A live scene or heavy layer behind a page-load entrance** (2026-11-21): one clock, published
+  once. The entrance is `scroll-animation`'s and publishes its phase on the DOM (`data-entrance`
+  pending → running → tail → settled, plus an `entrance:phase` event;
+  `scroll-animation/references/entrances.md` "11. The hero entrance and its signal"); neither skill
+  imports the other. `3d` keys its prepare, reveal and run stages off that signal, with a timeout
+  counted from navigation start (`3d/references/threejs-orchestration.md` "Stages"). Video start,
+  loop strips and embeds queue on `settled`: the hero budget's one home is
+  `scroll-animation/references/performance.md` "14. The hero budget". The order a busy hero runs in
+  is `design`'s (`design/references/surface-website.md` "Award / experimental tier").
 
 - **Discovery and intake** (2026-11-19): discovery — who it is for, what problem, what success
   looks like — is `product`'s when `product` runs (`product/references/discovery.md`); later packs
