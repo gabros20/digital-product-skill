@@ -10,6 +10,15 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ### Added
 - Queue unreleased changes here.
 
+## [0.3.3] — 2026-11-22
+
+### Changed
+- The 2026-11-21 seam ruling for a live scene or heavy layer behind a page-load entrance follows
+  scroll-animation 2.2.0's page lifecycle: the lifecycle owns "ready to animate" for the first load and
+  every route change, the entrance phase restarts per visit, 3d reads it per visit with a timeout from
+  the entrance's start, and the hero budget's one home is `lifecycle.md` "The hero budget"
+  (scroll-animation 2.2.0, 3d 0.11.0, design 0.3.3).
+
 ## [0.3.2] — 2026-11-21
 
 ### Added
